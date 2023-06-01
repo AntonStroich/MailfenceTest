@@ -7,6 +7,10 @@ class LandingPage {
     getMailBtn() {
         return cy.get("button#signin");
     }
+
+    clickMailBtn() {
+        this.getMailBtn().click();
+    }
 }
 
 export default LandingPage;
