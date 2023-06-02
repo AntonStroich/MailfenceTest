@@ -6,8 +6,8 @@ import BaseForm from "./BaseForm";
 class LandingPage extends BaseForm {
 
     constructor() {
-        super(`.mainheader`, `Landing Page`);    
-        this.MailBtn = new Button("button#signin", "Mail") 
+        super();   
+        this.MailBtn = new Button("button#signin", "Mail"); 
     }
     
     open() {

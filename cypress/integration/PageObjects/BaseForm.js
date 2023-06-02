@@ -2,10 +2,7 @@
 
 class BaseForm {
 
-    constructor(locator, name) {
-        this.locator = locator;
-        this.name = name;
-    }
+    constructor(){}
 
 }
 
