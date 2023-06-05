@@ -1,25 +1,26 @@
 ///<reference types = 'Cypress' />
 import Button from "./elements/Button";
-import BaseForm from "./BaseForm";
+import BasePage from "./BaseForm";
 
 
-class LandingPage extends BaseForm {
+class LandingPage extends BasePage {
 
     constructor() {
-        super();   
+        super(Cypress.env('url'));   
         this.MailBtn = new Button("button#signin", "Mail"); 
     }
     
-    open() {
-        cy.visit(Cypress.env('url'));
-    }
-
     clickMailBtn() {
         this.MailBtn.clickElement();
     }
 
     isMailBtnVisible() {
         this.MailBtn.isElementVisible();
+    }
+
+    openAndClickMailBtn() {
+        this.open();
+        this.clickMailBtn();
     }
 
 }

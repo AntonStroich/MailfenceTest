@@ -1,30 +1,35 @@
 ///<reference types = 'Cypress' />
+import BasePage from "./BaseForm";
+import Button from "./elements/Button";
+import TextField from "./elements/TextField";
 
-class LoginToMailPage {
+class LoginToMailPage extends BasePage {
 
-    getEmailAddressField() {
-        return cy.get("input#UserID");
+    constructor() {
+       super();
+       this.EmailAddressField = new TextField("input#UserID", "Email Address Field");
+       this.PasswordField = new TextField("input#Password", "Password Field");
+       this.EnterBtn = new Button("input[value='Enter']", "Mail");
+
     }
 
     populateEmailAddressField(text) {
-        this.getEmailAddressField().type(text);
+        this.EmailAddressField.clearAndTypeField(text);
     }
 
-
-    getPasswordField() {
-        return cy.get("input#Password");
-    }
 
     populatePasswordField(text) {
-        this.getPasswordField().type(text);
-    }
-
-    getEnterBtn() {
-        return cy.get("input[value='Enter']");
+        this.PasswordField.clearAndTypeField(text);     
     }
 
     clickEnterBtn() {
-        this.getEnterBtn().click();
+        this.EnterBtn.clickElement();
+    }
+
+    logInToMail(email, password) {
+        this.populateEmailAddressField(email);
+        this.populatePasswordField(password);
+        this.clickEnterBtn()
     }
 
 }
