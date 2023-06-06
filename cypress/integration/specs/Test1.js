@@ -1,6 +1,5 @@
 ///<reference types = 'Cypress' />
 
-
 describe("The first test run", function() { 
     
     before(function() {

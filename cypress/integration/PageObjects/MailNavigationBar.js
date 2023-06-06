@@ -1,23 +1,22 @@
 ///<reference types = 'Cypress' />
+import BaseForm from "./BaseForm";
+import Button from "./elements/Button";
 
-class MailNavigationBar {
-    
-    getMesssagesBtn() {
-        return cy.get("div#nav-mail");
-    }
+class MailNavigationBar extends BaseForm  {
+
+    constructor() {
+        super();
+        this.MessagesBtn = new Button("div#nav-mail", "Messages button");
+        this.UserBtn = new Button("div[class = 'GCSDBRWBNE user GCSDBRWBGE']", "User button");
+     }
 
     clickMessagesBtn() {
-        this.getMesssagesBtn().click();
-    }
-
-    getUserBtn() {
-        return cy.get("div[class = 'GCSDBRWBNE user GCSDBRWBGE']");
+        this.MessagesBtn.clickElement();
     }
 
     clickUserBtn() {
-        this.getUserBtn().click();
-    }    
-
+        this.UserBtn.clickElement();
+    }
 }
 
 export default MailNavigationBar;
