@@ -3,7 +3,7 @@ import BaseForm from "./BaseForm";
 import Button from "./elements/Button";
 
 
-class MailUserMenuDdn extends BaseForm {
+class MailBoxUserMenu extends BaseForm {
 
     constructor() {
         super();
@@ -16,4 +16,4 @@ class MailUserMenuDdn extends BaseForm {
 
 }
 
-export default MailUserMenuDdn;
+export default MailBoxUserMenu;

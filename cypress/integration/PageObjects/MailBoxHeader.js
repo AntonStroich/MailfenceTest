@@ -2,7 +2,7 @@
 import BaseForm from "./BaseForm";
 import Button from "./elements/Button";
 
-class MailNavigationBar extends BaseForm  {
+class MailBoxHeader extends BaseForm  {
 
     constructor() {
         super();
@@ -19,4 +19,4 @@ class MailNavigationBar extends BaseForm  {
     }
 }
 
-export default MailNavigationBar;
+export default MailBoxHeader;
