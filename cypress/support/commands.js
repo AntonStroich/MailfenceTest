@@ -10,11 +10,11 @@ Cypress.Commands.add("logInToMail", (email, password)=> {
     const mailBoxHeader = new MailBoxHeader();
     const mailBoxUserMenu = new MailBoxUserMenu();
     const mailBoxToolBar = new MailBoxToolBar();
-
+    
     landingPage.openAndClickMailBtn();
     loginToMailPage.logInToMail(email, password);
     mailBoxHeader.clickMessagesBtn();
-    mailBoxToolBar.clickInSelectAllChb();
+    mailBoxToolBar.clickOnNewBtn();
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })
