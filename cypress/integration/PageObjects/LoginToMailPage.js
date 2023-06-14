@@ -1,23 +1,23 @@
 ///<reference types = 'Cypress' />
 import BaseForm from "./BaseForm";
 import Button from "./elements/Button";
-import TextField from "./elements/TextField";
+import TextBox from "./elements/TextBox";
 
 class LoginToMailPage extends BaseForm {
 
     constructor() {
        super();
-       this.EmailAddressField = new TextField("input#UserID", "Email Address Field");
-       this.PasswordField = new TextField("input#Password", "Password Field");
+       this.EmailAddressTxb = new TextBox("input#UserID", "Email Address Field");
+       this.PasswordTxb = new TextBox("input#Password", "Password Field");
        this.EnterBtn = new Button("input[value='Enter']", "Mail");
     }
 
-    populateEmailAddressField(text) {
-        this.EmailAddressField.clearAndTypeField(text);
+    populateEmailAddressTxb(text) {
+        this.EmailAddressTxb.clearAndType(text);
     }
 
-    populatePasswordField(text) {
-        this.PasswordField.clearAndTypeField(text);     
+    populatePasswordTxb(text) {
+        this.PasswordTxb.clearAndType(text);     
     }
 
     clickEnterBtn() {
@@ -25,9 +25,9 @@ class LoginToMailPage extends BaseForm {
     }
 
     logInToMail(email, password) {
-        this.populateEmailAddressField(email);
-        this.populatePasswordField(password);
-        this.clickEnterBtn()
+        this.populateEmailAddressTxb(email);
+        this.populatePasswordTxb(password);
+        this.clickEnterBtn();
     }
 
 }

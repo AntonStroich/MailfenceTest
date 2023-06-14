@@ -11,6 +11,7 @@ describe("The first test run", function() {
     it("The first test", function() {
         const email = this.data.email;
         const password = this.data.password;
-        cy.logInToMail(email, password);
+        const subject = this.data.subject;
+        cy.logInToMail(email, password, subject);
     })
 })

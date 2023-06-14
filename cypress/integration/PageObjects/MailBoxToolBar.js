@@ -12,8 +12,6 @@ class MailBoxToolBar extends BaseForm  {
         this.deleteBtn = new Button("div div[title='To Trash']" , "Delete button");
      }
 
-
-
     clickInSelectAllChb() {
         cy.wait(3000);
         this.selectAllChb.clickElement();
