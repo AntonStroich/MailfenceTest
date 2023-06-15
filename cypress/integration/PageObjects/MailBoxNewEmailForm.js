@@ -9,7 +9,7 @@ class MailBoxNewEmailForm extends BaseForm  {
     constructor() {
         super();
         this.sendBtn = new Button("#mailSend" , "Send button");
-        this.attachmentLnk = new Link("a.GCSDBRWBISB.GCSDBRWBJSB:nth-child(2)" , "Send button");
+        this.attachmentBtn= new Button("a.GCSDBRWBISB.GCSDBRWBJSB:nth-child(2)" , "Send button");
         this.toTxb = new TextBox("#mailTo", "To text box");
         this.subjectTxb = new TextBox("#mailSubject", "Subject text box");
      }
@@ -18,8 +18,8 @@ class MailBoxNewEmailForm extends BaseForm  {
         this.sendBtn.clickElement();
     }
 
-    clickAttachmentsLnk() {
-        this.attachmentLnk.clickElement();
+    clickAttachmentsBtn() {
+        this.attachmentBtn.clickElement();
     }
 
     populateToTxb(email) {

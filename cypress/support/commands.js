@@ -4,6 +4,7 @@ import MailBoxHeader from "../integration/PageObjects/MailBoxHeader";
 import MailBoxUserMenu from "../integration/PageObjects/MailBoxUserMenu";
 import MailBoxToolBar from "../integration/PageObjects/MailBoxToolBar";
 import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm";
+import MailBoxNavBar from "../integration/PageObjects/MailBoxNavBar";
 
 Cypress.Commands.add("logInToMail", (email, password, subject)=> { 
     const landingPage = new LandingPage();
@@ -12,15 +13,20 @@ Cypress.Commands.add("logInToMail", (email, password, subject)=> {
     const mailBoxUserMenu = new MailBoxUserMenu();
     const mailBoxToolBar = new MailBoxToolBar();
     const mailBoxNewEmailForm = new MailBoxNewEmailForm();
+    const mailBoxNavBar = new MailBoxNavBar();
     
     landingPage.openAndClickMailBtn();
     loginToMailPage.logInToMail(email, password);
     mailBoxHeader.clickMessagesBtn();
-    mailBoxToolBar.clickOnNewBtn();
+    mailBoxToolBar.clickNewBtn();
     mailBoxNewEmailForm.populateToTxb(email);
     mailBoxNewEmailForm.populateSubjectTxb(subject);
     mailBoxNewEmailForm.clickSendBtn();
-    cy.wait(3000);
+    mailBoxNavBar.clickSentBtn();
+    mailBoxToolBar.clearAll();
+    mailBoxNavBar.clickTrashBtn();
+    mailBoxNavBar.clickInboxBtn();
+    mailBoxToolBar.clearAll();
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })

@@ -12,6 +12,7 @@ class MailBoxHeader extends BaseForm  {
 
     clickMessagesBtn() {
         this.MessagesBtn.clickElement();
+        cy.wait(3000);
     }
 
     clickUserBtn() {
