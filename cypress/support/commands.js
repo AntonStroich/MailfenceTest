@@ -26,7 +26,8 @@ Cypress.Commands.add("logInToMail", (email, password, subject)=> {
     mailBoxToolBar.clearAll();
     mailBoxNavBar.clickTrashBtn();
     mailBoxNavBar.clickInboxBtn();
-    mailBoxToolBar.clearAll();
+    mailBoxToolBar.refreshPage();
+    mailBoxToolBar.clearAll(); // Need to delete the email which was sent in the step above
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })

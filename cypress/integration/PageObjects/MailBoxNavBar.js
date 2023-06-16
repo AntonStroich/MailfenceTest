@@ -13,17 +13,17 @@ class MailBoxNavBar extends BaseForm  {
 
     clickInboxBtn() {
         this.inboxBtn.clickElement();
-        cy.wait(3000);
+        cy.wait(5000);
     }
 
     clickSentBtn() {
         this.sentBtn.clickElement();
-        cy.wait(3000);
+        cy.wait(5000);
     }
     
     clickTrashBtn() {
         this.trashBtn.clickElement();
-        cy.wait(3000);
+        cy.wait(5000);
     }
 }
 
