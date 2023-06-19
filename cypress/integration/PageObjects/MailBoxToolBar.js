@@ -9,7 +9,8 @@ class MailBoxToolBar extends BaseForm  {
         super();
         this.selectAllChb = new Checkbox("div.icon.icon-checkb" , "Select All checkbox");
         this.newBtn = new Button("div div[title='New']" , "New button");
-        this.deleteBtn = new Button("div div[title='To Trash']" , "Delete button");
+        this.toTrashBtn = new Button("div div[title='To Trash']" , "To Trash button");
+        this.deleteBtn = new Button("div div[title='Delete']" , "Delete button");
         this.refreshBtn = new Button("div.icon.icon16-Refresh" , "Refresh button");
      }
 
@@ -21,25 +22,31 @@ class MailBoxToolBar extends BaseForm  {
         this.newBtn.clickElement();
     }
     
-    clickDeleteBtn() {
-        this.deleteBtn.clickElement();
+    clickToTrashBtn() {
+        this.toTrashBtn.clickElement();
     }
 
     clickRefresBtn() {
         this.refreshBtn.clickElement();
     }
 
-    refreshPage() {
-        this.clickRefresBtn();
-        cy.wait(1000);
+    clickDeleteBtn() {
+        this.deleteBtn.clickElement();
     }
 
-    clearAll() {
+    moveAllEmailsToTrash(timeout) {
+        this.clickRefresBtn();
+        cy.wait(timeout);
+        this.clickSelectAllChb();
+        this.clickToTrashBtn();
+    }
+
+    deleteAllEmails(timeout) {
+        this.clickRefresBtn();
+        cy.wait(timeout);
         this.clickSelectAllChb();
         this.clickDeleteBtn();
     }
-
-
 }
 
 export default MailBoxToolBar;

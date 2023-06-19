@@ -5,6 +5,7 @@ import MailBoxUserMenu from "../integration/PageObjects/MailBoxUserMenu";
 import MailBoxToolBar from "../integration/PageObjects/MailBoxToolBar";
 import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm";
 import MailBoxNavBar from "../integration/PageObjects/MailBoxNavBar";
+import ConfirmDeletionWindow from "../integration/PageObjects/ConfirmDeletionWindow";
 
 Cypress.Commands.add("logInToMail", (email, password, subject)=> { 
     const landingPage = new LandingPage();
@@ -14,6 +15,7 @@ Cypress.Commands.add("logInToMail", (email, password, subject)=> {
     const mailBoxToolBar = new MailBoxToolBar();
     const mailBoxNewEmailForm = new MailBoxNewEmailForm();
     const mailBoxNavBar = new MailBoxNavBar();
+    const confirmDeletionWindow = new ConfirmDeletionWindow();
     
     landingPage.openAndClickMailBtn();
     loginToMailPage.logInToMail(email, password);
@@ -23,11 +25,12 @@ Cypress.Commands.add("logInToMail", (email, password, subject)=> {
     mailBoxNewEmailForm.populateSubjectTxb(subject);
     mailBoxNewEmailForm.clickSendBtn();
     mailBoxNavBar.clickSentBtn();
-    mailBoxToolBar.clearAll();
-    mailBoxNavBar.clickTrashBtn();
+    mailBoxToolBar.moveAllEmailsToTrash(1000);
     mailBoxNavBar.clickInboxBtn();
-    mailBoxToolBar.refreshPage();
-    mailBoxToolBar.clearAll(); // Need to delete the email which was sent in the step above
+    mailBoxToolBar.moveAllEmailsToTrash(1000);
+    mailBoxNavBar.clickTrashBtn();
+    mailBoxToolBar.deleteAllEmails(1000);
+    confirmDeletionWindow.clickYesAndWait(1000);
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })
