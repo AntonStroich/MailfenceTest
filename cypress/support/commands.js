@@ -7,7 +7,7 @@ import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm"
 import MailBoxNavBar from "../integration/PageObjects/MailBoxNavBar";
 import ConfirmDeletionWindow from "../integration/PageObjects/ConfirmDeletionWindow";
 
-Cypress.Commands.add("logInToMail", (email, password, subject)=> { 
+Cypress.Commands.add("logInToMail", (login, password, subject)=> { 
     const landingPage = new LandingPage();
     const loginToMailPage = new LoginToMailPage();
     const mailBoxHeader = new MailBoxHeader();
@@ -18,11 +18,12 @@ Cypress.Commands.add("logInToMail", (email, password, subject)=> {
     const confirmDeletionWindow = new ConfirmDeletionWindow();
     
     landingPage.openAndClickMailBtn();
-    loginToMailPage.logInToMail(email, password);
+    loginToMailPage.logInToMail(login, password);
     mailBoxHeader.clickMessagesBtn();
     mailBoxToolBar.clickNewBtn();
-    mailBoxNewEmailForm.populateToTxb(email);
+    mailBoxNewEmailForm.populateToTxb(login);
     mailBoxNewEmailForm.populateSubjectTxb(subject);
+    mailBoxNewEmailForm.clickAttachmentsBtn();
     mailBoxNewEmailForm.clickSendBtn();
     mailBoxNavBar.clickSentBtn();
     mailBoxToolBar.moveAllEmailsToTrash(1000);

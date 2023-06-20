@@ -1,17 +1,18 @@
 ///<reference types = 'Cypress' />
 import BaseForm from "./BaseForm";
 import Button from "./elements/Button";
-import Link from "./elements/Link";
-import TextBox from "./elements/TextBox"
+import TextBox from "./elements/TextBox";
+import Dropdown from "./elements/Dropdown";
 
 class MailBoxNewEmailForm extends BaseForm  {
 
     constructor() {
         super();
         this.sendBtn = new Button("#mailSend" , "Send button");
-        this.attachmentBtn= new Button("a.GCSDBRWBISB.GCSDBRWBJSB:nth-child(2)" , "Send button");
+        this.attachmentBtn= new Button("a.GCSDBRWBISB.GCSDBRWBJSB:nth-child(2)" , "Attachment button");
         this.toTxb = new TextBox("#mailTo", "To text box");
         this.subjectTxb = new TextBox("#mailSubject", "Subject text box");
+        this.attachmentDdn = new Dropdown(".GCSDBRWBNQ.menu", "Attachment dropdown");
      }
 
     clickSendBtn() {
@@ -28,6 +29,10 @@ class MailBoxNewEmailForm extends BaseForm  {
 
     populateSubjectTxb(subject) {
         this.subjectTxb.clearAndType(subject);
+    }
+
+    selectOptionByTextFromAttachmentDdn(textOption, isForseTrue) {
+        this.attachmentDdn.selectOptionByText(`${this.attachmentDdn.locator} .GCSDBRWBFR`, textOption, isForseTrue);
     }
 
 }

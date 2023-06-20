@@ -12,20 +12,20 @@ class LoginToMailPage extends BaseForm {
        this.EnterBtn = new Button("input[value='Enter']", "Mail");
     }
 
-    populateEmailAddressTxb(text) {
-        this.EmailAddressTxb.clearAndType(text);
+    populateEmailAddressTxb(login) {
+        this.EmailAddressTxb.clearAndType(login);
     }
 
-    populatePasswordTxb(text) {
-        this.PasswordTxb.clearAndType(text);     
+    populatePasswordTxb(password) {
+        this.PasswordTxb.clearAndType(password);     
     }
 
     clickEnterBtn() {
         this.EnterBtn.clickElement();
     }
 
-    logInToMail(email, password) {
-        this.populateEmailAddressTxb(email);
+    logInToMail(login, password) {
+        this.populateEmailAddressTxb(login);
         this.populatePasswordTxb(password);
         this.clickEnterBtn();
     }

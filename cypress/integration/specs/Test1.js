@@ -3,15 +3,19 @@
 describe("The first test run", function() { 
     
     before(function() {
-        cy.fixture("Test1").then((data) => {
-            this.data = data;
+        cy.fixture("credential").then((credential) => {
+            this.credential = credential;
+        })
+
+        cy.fixture("email").then((email) => {
+            this.email = email;
         })
     })
 
     it("The first test", function() {
-        const email = this.data.email;
-        const password = this.data.password;
-        const subject = this.data.subject;
-        cy.logInToMail(email, password, subject);
+        const login = this.credential.login;
+        const password = this.credential.password;
+        const subject = this.email.subjectEmail;
+        cy.logInToMail(login, password, subject);
     })
 })
