@@ -7,7 +7,7 @@ import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm"
 import MailBoxNavBar from "../integration/PageObjects/MailBoxNavBar";
 import ConfirmDeletionWindow from "../integration/PageObjects/ConfirmDeletionWindow";
 
-Cypress.Commands.add("logInToMail", (login, password, subject)=> { 
+Cypress.Commands.add("logInToMail", (login, password, subject, filePath, attachmentName, attachmentText)=> { 
     const landingPage = new LandingPage();
     const loginToMailPage = new LoginToMailPage();
     const mailBoxHeader = new MailBoxHeader();
@@ -32,6 +32,12 @@ Cypress.Commands.add("logInToMail", (login, password, subject)=> {
     mailBoxNavBar.clickTrashBtn();
     mailBoxToolBar.deleteAllEmails(1000);
     confirmDeletionWindow.clickYesAndWait(1000);
+    cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
+  })
+
+  Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentText) => { 
+    cy.writeFile(`${filePath}\\${attachmentName}`, `${attachmentText}`);
+    cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
   })
