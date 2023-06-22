@@ -6,17 +6,23 @@ class MailBoxHeader extends BaseForm  {
 
     constructor() {
         super();
-        this.MessagesBtn = new Button("div#nav-mail", "Messages button");
-        this.UserBtn = new Button("div[class = 'GCSDBRWBNE user GCSDBRWBGE']", "User button");
+        this.messagesBtn = new Button("div#nav-mail", "Messages button");
+        this.userBtn = new Button("div[class = 'GCSDBRWBNE user GCSDBRWBGE']", "User button");
+        this.documentsBtn = new Button("#nav-docs", "Documents button");
      }
 
-    clickMessagesBtn() {
-        this.MessagesBtn.clickElement();
-        cy.wait(3000);
+    clickMessagesBtn(timeout=1000) {
+        this.messagesBtn.clickElement();
+        cy.wait(timeout);
+    }
+
+    clickDocumentsBtn(timeout=1000) {
+        this.documentsBtn.clickElement();
+        cy.wait(timeout);
     }
 
     clickUserBtn() {
-        this.UserBtn.clickElement();
+        this.userBtn.clickElement();
     }
 }
 

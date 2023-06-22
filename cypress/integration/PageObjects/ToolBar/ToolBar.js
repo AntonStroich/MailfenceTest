@@ -1,9 +1,9 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "./BaseForm";
-import Checkbox from "./elements/Checkbox";
-import Button from "./elements/Button"
+import BaseForm from "../BaseForm";
+import Checkbox from "../elements/Checkbox";
+import Button from "../elements/Button";
 
-class MailBoxToolBar extends BaseForm  {
+class ToolBar extends BaseForm  {
 
     constructor() {
         super();
@@ -49,4 +49,4 @@ class MailBoxToolBar extends BaseForm  {
     }
 }
 
-export default MailBoxToolBar;
+export default ToolBar;
