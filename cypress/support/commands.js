@@ -7,7 +7,8 @@ import InputTabToolBar from "../integration/PageObjects/ToolBar/InputTabToolBar"
 import SentTabToolBar from "../integration/PageObjects/ToolBar/SentTabToolBar";
 import TrashTabToolBar from "../integration/PageObjects/ToolBar/TrashTabToolBar";
 import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm";
-import MailBoxNavBar from "../integration/PageObjects/MailBoxNavBar";
+import MessagesNavBar from "../integration/PageObjects/NavBar/MessagesNavBar";
+import DocumentsNavBar from "../integration/PageObjects/NavBar/DocumentsNavBar";
 import ConfirmDeletionWindow from "../integration/PageObjects/ConfirmDeletionWindow";
 
 Cypress.Commands.add("logInToMail", (login, password, subject, filePath, attachmentName, attachmentText)=> { 
@@ -20,7 +21,8 @@ Cypress.Commands.add("logInToMail", (login, password, subject, filePath, attachm
     const sentTabToolBar = new SentTabToolBar();
     const trashToolBar = new TrashTabToolBar();
     const mailBoxNewEmailForm = new MailBoxNewEmailForm();
-    const mailBoxNavBar = new MailBoxNavBar();
+    const messagesNavBar = new MessagesNavBar();
+    const documentsNavBar = new DocumentsNavBar();
     const confirmDeletionWindow = new ConfirmDeletionWindow();
     
     landingPage.openAndClickMailBtn();
@@ -31,15 +33,17 @@ Cypress.Commands.add("logInToMail", (login, password, subject, filePath, attachm
     mailBoxNewEmailForm.populateSubjectTxb(subject);
     mailBoxNewEmailForm.clickAttachmentsBtn();
     mailBoxNewEmailForm.clickSendBtn();
-    mailBoxNavBar.clickSentBtn();
-    sentTabToolBar.moveAllEmailsToTrash(1000);
-    mailBoxNavBar.clickInboxBtn();
-    inputTabToolBar.moveAllEmailsToTrash(1000);
-    mailBoxNavBar.clickTrashBtn();
-    trashToolBar.deleteAllEmails(1000);
-    confirmDeletionWindow.clickYesAndWait(1000);
+    messagesNavBar.clickSentBtn();
+    sentTabToolBar.moveAllEmailsToTrash();
+    messagesNavBar.clickInboxBtn();
+    inputTabToolBar.moveAllEmailsToTrash();
+    messagesNavBar.clickTrashBtn();
+    trashToolBar.deleteAllEmails();
+    confirmDeletionWindow.clickYesAndWait();
     cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
     mailBoxHeader.clickDocumentsBtn();
+    documentsNavBar.clickMyDocumentsBtn();
+    documentsNavBar.clickTrashBtn();
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })

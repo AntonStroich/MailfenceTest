@@ -1,8 +1,8 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "./BaseForm";
-import Button from "./elements/Button";
+import BaseForm from "../BaseForm";
+import Button from "../elements/Button";
 
-class MailBoxNavBar extends BaseForm  {
+class MessagesNavBar extends BaseForm {
 
     constructor() {
         super();
@@ -11,20 +11,20 @@ class MailBoxNavBar extends BaseForm  {
         this.trashBtn = new Button(".GCSDBRWBJX:nth-child(3) div .treeItemLabel" , "Trash button");
      }
 
-    clickInboxBtn() {
+    clickInboxBtn(timeout=1000) {
         this.inboxBtn.clickElement();
-        cy.wait(2000);
+        cy.wait(timeout);
     }
 
-    clickSentBtn() {
+    clickSentBtn(timeout=1000) {
         this.sentBtn.clickElement();
-        cy.wait(2000);
+        cy.wait(timeout);
     }
     
-    clickTrashBtn() {
+    clickTrashBtn(timeout=1000) {
         this.trashBtn.clickElement();
-        cy.wait(2000);
+        cy.wait(timeout);
     }
 }
 
-export default MailBoxNavBar;
+export default MessagesNavBar;
