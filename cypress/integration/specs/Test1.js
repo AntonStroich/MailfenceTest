@@ -13,8 +13,11 @@ describe("The first test run", function() {
 
         cy.fixture("attachment").then((attachment) => {
             this.attachment = attachment;
+            cy.task(`deleteFile`, `${this.attachment.filePath}\\${this.attachment.attachmentName}`);
             cy.generateAttachment(this.attachment.filePath, this.attachment.attachmentName, this.attachment.attachmentText);
         })
+
+        
     })
 
     it("The first test", function() {
