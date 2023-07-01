@@ -6,15 +6,17 @@ import Button from "./elements/Button";
 class ConfirmDeletionWindow extends BaseForm {
 
     constructor() {
-        super();
-        this.yesBtn = new Button("#dialBtn_YES", "Yes button");
+        super(`Confirm Deletion Window`);
+        this.yesBtn = new Button("#dialBtn_YES", "Yes");
     }
     
     clickYesBtn() {
+        cy.log(`Clicking on ${this.yesBtn.name} from ${this.name}`);
         this.yesBtn.clickElement();
     } 
 
     clickYesAndWait(timeout=1000) {
+        cy.log(`Clicking on ${this.yesBtn.name} from ${this.name}`);
         this.clickYesBtn();
         cy.wait(timeout);
     }

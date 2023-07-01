@@ -8,14 +8,10 @@ async function setupNodeEvents(on, config){
         try {
           fs.unlinkSync(path);
         } catch(error) {
-          if (error.message.includes("no such file or directory")){
-            console.log(`${error.name}`);
-          } else {
+          if (!error.message.includes("no such file or directory")){
             throw error;
-          }  
-        } finally {
-          console.log(`Function to remove the file has been completed`);
-        }
+          } 
+        } 
         return null;
     }
   });

@@ -1,14 +1,9 @@
 ///<reference types = 'Cypress' />
 
-class BasePage {
-    constructor(url) {
-        this.url = url;
+class BaseForm {
+    constructor(name) {
+        this.name = name;
     }
-
-    open() {
-        cy.visit(this.url);
-    }
-
 }
 
-export default BasePage;
+export default BaseForm;

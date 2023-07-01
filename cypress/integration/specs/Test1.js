@@ -17,6 +17,7 @@ describe("The first test run", function() {
             cy.generateAttachment(this.attachment.filePath, this.attachment.attachmentName, this.attachment.attachmentText);
         })
 
+        cy.loginAndClearAllMessagesTabs("cy20230531@mailfence.com", "WqSLQVuYS%");
         
     })
 
@@ -28,6 +29,7 @@ describe("The first test run", function() {
         const attachmentName = this.attachment.attachmentName;
         const attachmentText = this.attachment.attachmentText;
 
-        cy.logInToMail(login, password, subject, filePath, attachmentName, attachmentText);
+        cy.logInToMailAndSendEmail(login, password, subject, filePath, attachmentName, attachmentText);
+        cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
     })
 })

@@ -6,21 +6,24 @@ import TextBox from "./elements/TextBox";
 class LoginToMailPage extends BaseForm {
 
     constructor() {
-       super();
-       this.EmailAddressTxb = new TextBox("input#UserID", "Email Address Field");
-       this.PasswordTxb = new TextBox("input#Password", "Password Field");
+       super(`Login to Mail page`);
+       this.EmailAddressTxb = new TextBox("input#UserID", "Email Addres");
+       this.PasswordTxb = new TextBox("input#Password", "Password");
        this.EnterBtn = new Button("input[value='Enter']", "Mail");
     }
 
     populateEmailAddressTxb(login) {
+        cy.log(`Filling ${this.EmailAddressTxb.name} from ${this.name}`);
         this.EmailAddressTxb.clearAndType(login);
     }
 
     populatePasswordTxb(password) {
+        cy.log(`Filling ${this.PasswordTxb.name} from ${this.name}`);
         this.PasswordTxb.clearAndType(password);     
     }
 
     clickEnterBtn() {
+        cy.log(`Clicking ${this.EnterBtn.name} from ${this.name}`);
         this.EnterBtn.clickElement();
     }
 

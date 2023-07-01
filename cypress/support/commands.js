@@ -9,21 +9,23 @@ import TrashTabToolBar from "../integration/PageObjects/ToolBar/TrashTabToolBar"
 import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm";
 import MessagesNavBar from "../integration/PageObjects/NavBar/MessagesNavBar";
 import DocumentsNavBar from "../integration/PageObjects/NavBar/DocumentsNavBar";
-import ConfirmDeletionWindow from "../integration/PageObjects/ConfirmDeletionWindow";
+import MailList from "../integration/PageObjects/MailList";
 
-Cypress.Commands.add("logInToMail", (login, password, subject, filePath, attachmentName, attachmentText)=> { 
+
+  Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentText)=> { 
+    cy.writeFile(`${filePath}\\${attachmentName}`, `${attachmentText}`);
+    cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
+  })
+
+  Cypress.Commands.add("logInToMailAndSendEmail", (login, password, subject, filePath, attachmentName, attachmentText)=> { 
     const landingPage = new LandingPage();
     const loginToMailPage = new LoginToMailPage();
     const mailBoxHeader = new MailBoxHeader();
     const mailBoxUserMenu = new MailBoxUserMenu();
-    const toolBar = new ToolBar();
-    const inputTabToolBar = new InputTabToolBar();
-    const sentTabToolBar = new SentTabToolBar();
-    const trashToolBar = new TrashTabToolBar();
-    const mailBoxNewEmailForm = new MailBoxNewEmailForm();
-    const messagesNavBar = new MessagesNavBar();
     const documentsNavBar = new DocumentsNavBar();
-    const confirmDeletionWindow = new ConfirmDeletionWindow();
+    const toolBar = new ToolBar();
+    const mailBoxNewEmailForm = new MailBoxNewEmailForm();
+    
     
     landingPage.openAndClickMailBtn();
     loginToMailPage.logInToMail(login, password);
@@ -31,16 +33,7 @@ Cypress.Commands.add("logInToMail", (login, password, subject, filePath, attachm
     toolBar.clickNewBtn();
     mailBoxNewEmailForm.populateToTxb(login);
     mailBoxNewEmailForm.populateSubjectTxb(subject);
-    mailBoxNewEmailForm.clickAttachmentsBtn();
     mailBoxNewEmailForm.clickSendBtn();
-    messagesNavBar.clickSentBtn();
-    sentTabToolBar.moveAllEmailsToTrash();
-    messagesNavBar.clickInboxBtn();
-    inputTabToolBar.moveAllEmailsToTrash();
-    messagesNavBar.clickTrashBtn();
-    trashToolBar.deleteAllEmails();
-    confirmDeletionWindow.clickYesAndWait();
-    cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
     mailBoxHeader.clickDocumentsBtn();
     documentsNavBar.clickMyDocumentsBtn();
     documentsNavBar.clickTrashBtn();
@@ -48,7 +41,25 @@ Cypress.Commands.add("logInToMail", (login, password, subject, filePath, attachm
     mailBoxUserMenu.clickLogOutBtn();
   })
 
-  Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentText) => { 
-    cy.writeFile(`${filePath}\\${attachmentName}`, `${attachmentText}`);
-    cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
+  Cypress.Commands.add("loginAndClearAllMessagesTabs", (login, password)=> {
+    const landingPage = new LandingPage();
+    const loginToMailPage = new LoginToMailPage();
+    const mailBoxHeader = new MailBoxHeader();
+    const mailBoxUserMenu = new MailBoxUserMenu();
+    const inputTabToolBar = new InputTabToolBar();
+    const sentTabToolBar = new SentTabToolBar();
+    const trashToolBar = new TrashTabToolBar();
+    const messagesNavBar = new MessagesNavBar();
+
+    landingPage.openAndClickMailBtn();
+    loginToMailPage.logInToMail(login, password);
+    mailBoxHeader.clickMessagesBtn();
+    messagesNavBar.clickInboxBtn();
+    inputTabToolBar.clearInputTabIfNotEmpty();
+    messagesNavBar.clickSentBtn();
+    sentTabToolBar.clearSentTabIfNotEmpty();
+    messagesNavBar.clickTrashBtn();
+    trashToolBar.clearTrashTabIfNotEmpty();
+    mailBoxHeader.clickUserBtn();
+    mailBoxUserMenu.clickLogOutBtn();
   })

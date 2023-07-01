@@ -6,47 +6,27 @@ import Button from "../elements/Button";
 class ToolBar extends BaseForm  {
 
     constructor() {
-        super();
-        this.selectAllChb = new Checkbox("div.icon.icon-checkb" , "Select All checkbox");
-        this.newBtn = new Button("div div[title='New']" , "New button");
-        this.toTrashBtn = new Button("div div[title='To Trash']" , "To Trash button");
-        this.deleteBtn = new Button("div div[title='Delete']" , "Delete button");
-        this.refreshBtn = new Button("div.icon.icon16-Refresh" , "Refresh button");
+        super(`Tool bar`);
+        this.selectAllChb = new Checkbox("div.icon.icon-checkb" , "Select All");
+        this.newBtn = new Button("div div[title='New']" , "New");
+        this.refreshBtn = new Button("div div[title='Refresh']" , "Refresh");
      }
 
     clickSelectAllChb() {
+        cy.log(`Clicking on ${this.selectAllChb.name} from ${this.name}`);
         this.selectAllChb.clickElement();
     }
 
     clickNewBtn() {
+        cy.log(`Clicking on ${this.newBtn.name} from ${this.name}`);
         this.newBtn.clickElement();
     }
     
-    clickToTrashBtn() {
-        this.toTrashBtn.clickElement();
-    }
-
-    clickRefresBtn() {
+    clickRefreshBtn() {
+        cy.log(`Clicking on ${this.refreshBtn.name} from ${this.name}`);
         this.refreshBtn.clickElement();
     }
 
-    clickDeleteBtn() {
-        this.deleteBtn.clickElement();
-    }
-
-    moveAllEmailsToTrash(timeout) {
-        this.clickRefresBtn();
-        cy.wait(timeout);
-        this.clickSelectAllChb();
-        this.clickToTrashBtn();
-    }
-
-    deleteAllEmails(timeout) {
-        this.clickRefresBtn();
-        cy.wait(timeout);
-        this.clickSelectAllChb();
-        this.clickDeleteBtn();
-    }
 }
 
 export default ToolBar;
