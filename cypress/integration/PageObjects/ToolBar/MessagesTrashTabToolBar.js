@@ -3,7 +3,7 @@ import MessagesToolBar from "./MessagesToolBar";
 import Button from "../elements/Button";
 import ConfirmDeletionWindow from "../ConfirmDeletionWindow";
 
-class TrashTabToolBar extends MessagesToolBar {
+class MessagesTrashTabToolBar extends MessagesToolBar {
 
     constructor() {
         super(`Trash tab of the Tool bar of the Messages page`);
@@ -20,4 +20,4 @@ class TrashTabToolBar extends MessagesToolBar {
     }
 }
 
-export default TrashTabToolBar;
+export default MessagesTrashTabToolBar;

@@ -4,7 +4,7 @@ import MailBoxHeader from "../integration/PageObjects/MailBoxHeader";
 import MailBoxUserMenu from "../integration/PageObjects/MailBoxUserMenu";
 import ToolBar from "../integration/PageObjects/ToolBar/ToolBar";
 import MessagesToolBar from "../integration/PageObjects/ToolBar/MessagesToolBar";
-import TrashTabToolBar from "../integration/PageObjects/ToolBar/TrashTabToolBar";
+import MessagesTrashTabToolBar from "../integration/PageObjects/ToolBar/MessagesTrashTabToolBar";
 import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm";
 import MessagesNavBar from "../integration/PageObjects/NavBar/MessagesNavBar";
 import DocumentsNavBar from "../integration/PageObjects/NavBar/DocumentsNavBar";
@@ -45,7 +45,7 @@ import DocumentsNavBar from "../integration/PageObjects/NavBar/DocumentsNavBar";
     const mailBoxHeader = new MailBoxHeader();
     const mailBoxUserMenu = new MailBoxUserMenu();
     const messagesToolBar = new MessagesToolBar();
-    const trashToolBar = new TrashTabToolBar();
+    const messagesTrashToolBar = new MessagesTrashTabToolBar();
     const messagesNavBar = new MessagesNavBar();
 
     landingPage.openAndClickMailBtn();
@@ -56,7 +56,7 @@ import DocumentsNavBar from "../integration/PageObjects/NavBar/DocumentsNavBar";
     messagesNavBar.clickSentBtn();
     messagesToolBar.deleteAllIfNotEmpty();
     messagesNavBar.clickTrashBtn();
-    trashToolBar.deleteAllIfNotEmpty();
+    messagesTrashToolBar.deleteAllIfNotEmpty();
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })
