@@ -4,11 +4,10 @@ import BaseForm from "./BaseForm";
 class MailList extends BaseForm {
 
     constructor() {
-        super(`Mail box User menu`);
+        super(`Mail list`);
         this.locator = "#mailList";
     }
  
-
 }
 
 export default MailList;

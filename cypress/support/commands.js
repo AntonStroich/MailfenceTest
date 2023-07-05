@@ -3,13 +3,11 @@ import LoginToMailPage from "..//integration/PageObjects/LoginToMailPage";
 import MailBoxHeader from "../integration/PageObjects/MailBoxHeader";
 import MailBoxUserMenu from "../integration/PageObjects/MailBoxUserMenu";
 import ToolBar from "../integration/PageObjects/ToolBar/ToolBar";
-import InputTabToolBar from "../integration/PageObjects/ToolBar/InputTabToolBar";
-import SentTabToolBar from "../integration/PageObjects/ToolBar/SentTabToolBar";
+import MessagesToolBar from "../integration/PageObjects/ToolBar/MessagesToolBar";
 import TrashTabToolBar from "../integration/PageObjects/ToolBar/TrashTabToolBar";
 import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm";
 import MessagesNavBar from "../integration/PageObjects/NavBar/MessagesNavBar";
 import DocumentsNavBar from "../integration/PageObjects/NavBar/DocumentsNavBar";
-import MailList from "../integration/PageObjects/MailList";
 
 
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentText)=> { 
@@ -46,8 +44,7 @@ import MailList from "../integration/PageObjects/MailList";
     const loginToMailPage = new LoginToMailPage();
     const mailBoxHeader = new MailBoxHeader();
     const mailBoxUserMenu = new MailBoxUserMenu();
-    const inputTabToolBar = new InputTabToolBar();
-    const sentTabToolBar = new SentTabToolBar();
+    const messagesToolBar = new MessagesToolBar();
     const trashToolBar = new TrashTabToolBar();
     const messagesNavBar = new MessagesNavBar();
 
@@ -55,11 +52,11 @@ import MailList from "../integration/PageObjects/MailList";
     loginToMailPage.logInToMail(login, password);
     mailBoxHeader.clickMessagesBtn();
     messagesNavBar.clickInboxBtn();
-    inputTabToolBar.clearInputTabIfNotEmpty();
+    messagesToolBar.deleteAllIfNotEmpty();
     messagesNavBar.clickSentBtn();
-    sentTabToolBar.clearSentTabIfNotEmpty();
+    messagesToolBar.deleteAllIfNotEmpty();
     messagesNavBar.clickTrashBtn();
-    trashToolBar.clearTrashTabIfNotEmpty();
+    trashToolBar.deleteAllIfNotEmpty();
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })
