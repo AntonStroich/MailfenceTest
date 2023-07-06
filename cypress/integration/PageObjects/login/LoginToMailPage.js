@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "./BaseForm";
-import Button from "./elements/Button";
-import TextBox from "./elements/TextBox";
+import BaseForm from "../BaseForm";
+import Button from "../elements/Button";
+import TextBox from "../elements/TextBox";
 
 class LoginToMailPage extends BaseForm {
 

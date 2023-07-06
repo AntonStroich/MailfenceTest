@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
 import ToolBar from "./ToolBar";
-import MessagesNavBar from "../NavBar/MessagesNavBar";
-import MailList from "../MailList";
+import MessagesNavBar from "../navigation_bars/MessagesNavBar";
+import MailList from "../lists/MailList";
 
 class MessagesToolBar extends ToolBar  {
 

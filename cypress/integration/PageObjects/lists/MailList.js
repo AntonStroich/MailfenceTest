@@ -1,5 +1,5 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "./BaseForm";
+import BaseForm from "../BaseForm";
 
 class MailList extends BaseForm {
 

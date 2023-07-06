@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
 import MessagesToolBar from "./MessagesToolBar";
 import Button from "../elements/Button";
-import ConfirmDeletionWindow from "../ConfirmDeletionWindow";
+import ConfirmDeletionWindow from "../modal_windows/ConfirmDeletionWindow";
 
 class MessagesTrashTabToolBar extends MessagesToolBar {
 

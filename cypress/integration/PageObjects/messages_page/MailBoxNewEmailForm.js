@@ -1,8 +1,8 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "./BaseForm";
-import Button from "./elements/Button";
-import TextBox from "./elements/TextBox";
-import Dropdown from "./elements/Dropdown";
+import BaseForm from "../BaseForm";
+import Button from "../elements/Button";
+import TextBox from "../elements/TextBox";
+import Dropdown from "../elements/Dropdown";
 
 class MailBoxNewEmailForm extends BaseForm  {
 

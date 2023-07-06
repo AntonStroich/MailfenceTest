@@ -1,13 +1,13 @@
-import LandingPage from "..//integration/PageObjects/LandingPage";
-import LoginToMailPage from "..//integration/PageObjects/LoginToMailPage";
-import MailBoxHeader from "../integration/PageObjects/MailBoxHeader";
-import MailBoxUserMenu from "../integration/PageObjects/MailBoxUserMenu";
-import ToolBar from "../integration/PageObjects/ToolBar/ToolBar";
-import MessagesToolBar from "../integration/PageObjects/ToolBar/MessagesToolBar";
-import MessagesTrashTabToolBar from "../integration/PageObjects/ToolBar/MessagesTrashTabToolBar";
-import MailBoxNewEmailForm from "../integration/PageObjects/MailBoxNewEmailForm";
-import MessagesNavBar from "../integration/PageObjects/NavBar/MessagesNavBar";
-import DocumentsNavBar from "../integration/PageObjects/NavBar/DocumentsNavBar";
+import LandingPage from "../integration/PageObjects/elements/landing/LandingPage";
+import LoginToMailPage from "../integration/PageObjects/login/LoginToMailPage";
+import MailBoxHeader from "../integration/PageObjects/mail_box/MailBoxHeader";
+import MailBoxUserMenu from "../integration/PageObjects/mail_box/MailBoxUserMenu";
+import ToolBar from "../integration/PageObjects/tool_bars/ToolBar";
+import MessagesToolBar from "../integration/PageObjects/tool_bars/MessagesToolBar";
+import MessagesTrashTabToolBar from "../integration/PageObjects/tool_bars/MessagesTrashTabToolBar";
+import MailBoxNewEmailForm from "../integration/PageObjects/messages_page/MailBoxNewEmailForm";
+import MessagesNavBar from "../integration/PageObjects/navigation_bars/MessagesNavBar";
+import DocumentsNavBar from "../integration/PageObjects/navigation_bars/DocumentsNavBar";
 
 
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentText)=> { 

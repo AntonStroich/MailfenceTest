@@ -1,6 +1,6 @@
 ///<reference types = 'Cypress' />
-import Button from "./elements/Button";
-import BaseForm from "./BaseForm";
+import Button from "../Button";
+import BaseForm from "../../BaseForm";
 
 
 class LandingPage extends BaseForm {
