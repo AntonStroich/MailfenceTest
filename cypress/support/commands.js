@@ -4,10 +4,12 @@ import MailBoxHeader from "../integration/PageObjects/mail_box/MailBoxHeader";
 import MailBoxUserMenu from "../integration/PageObjects/mail_box/MailBoxUserMenu";
 import ToolBar from "../integration/PageObjects/tool_bars/ToolBar";
 import MessagesToolBar from "../integration/PageObjects/tool_bars/MessagesToolBar";
-import MessagesTrashTabToolBar from "../integration/PageObjects/tool_bars/MessagesTrashTabToolBar";
+import MessagesTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/MessagesTabToolBarWithDeleteBtn";
 import MailBoxNewEmailForm from "../integration/PageObjects/messages_page/MailBoxNewEmailForm";
 import MessagesNavBar from "../integration/PageObjects/navigation_bars/MessagesNavBar";
 import DocumentsNavBar from "../integration/PageObjects/navigation_bars/DocumentsNavBar";
+import DocumentsToolBar  from "../integration/PageObjects/tool_bars/DocumentsToolBar";
+import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/DocumentsTabToolBarWithDeleteBtn";
 
 
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentText)=> { 
@@ -39,14 +41,17 @@ import DocumentsNavBar from "../integration/PageObjects/navigation_bars/Document
     mailBoxUserMenu.clickLogOutBtn();
   })
 
-  Cypress.Commands.add("loginAndClearAllMessagesTabs", (login, password)=> {
+  Cypress.Commands.add("loginAndClearAll", (login, password)=> {
     const landingPage = new LandingPage();
     const loginToMailPage = new LoginToMailPage();
     const mailBoxHeader = new MailBoxHeader();
     const mailBoxUserMenu = new MailBoxUserMenu();
-    const messagesToolBar = new MessagesToolBar();
-    const messagesTrashToolBar = new MessagesTrashTabToolBar();
     const messagesNavBar = new MessagesNavBar();
+    const messagesToolBar = new MessagesToolBar();
+    const messagesTabToolBarWithDeleteBtn = new MessagesTabToolBarWithDeleteBtn();
+    const documentsNavBar = new DocumentsNavBar();
+    const documentsToolBar = new DocumentsToolBar();
+    const documentsTabToolBarWithDeleteBtn = new DocumentsTabToolBarWithDeleteBtn();
 
     landingPage.openAndClickMailBtn();
     loginToMailPage.logInToMail(login, password);
@@ -55,8 +60,17 @@ import DocumentsNavBar from "../integration/PageObjects/navigation_bars/Document
     messagesToolBar.deleteAllIfNotEmpty();
     messagesNavBar.clickSentBtn();
     messagesToolBar.deleteAllIfNotEmpty();
+    messagesNavBar.clickDraftsBtn();
+    messagesToolBar.deleteAllIfNotEmpty();
+    messagesNavBar.clickSpamBtn();
+    messagesTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
     messagesNavBar.clickTrashBtn();
-    messagesTrashToolBar.deleteAllIfNotEmpty();
+    messagesTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
+    mailBoxHeader.clickDocumentsBtn();
+    documentsNavBar.clickMyDocumentsBtn();
+    documentsToolBar.deleteAllIfNotEmpty();
+    documentsNavBar.clickTrashBtn();
+    documentsTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })

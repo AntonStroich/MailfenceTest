@@ -17,7 +17,7 @@ describe("The first test run", function() {
             cy.generateAttachment(this.attachment.filePath, this.attachment.attachmentName, this.attachment.attachmentText);
         })
 
-        cy.loginAndClearAllMessagesTabs("cy20230531@mailfence.com", "WqSLQVuYS%");
+        cy.loginAndClearAll("cy20230531@mailfence.com", "WqSLQVuYS%");
         
     })
 

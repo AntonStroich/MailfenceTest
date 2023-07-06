@@ -10,6 +10,8 @@ class MessagesNavBar extends BaseForm {
         this.inboxBtn = new Button("#treeInbox" , "Inbox")
         this.sentBtn = new Button("#treeSend" , "Sent");
         this.trashBtn = new Button(".GCSDBRWBJX:nth-child(3) div .treeItemLabel" , "Trash");
+        this.draftsBtn = new Button(".GCSDBRWBJX:nth-child(4) div .treeItemLabel" , "Drafts");
+        this.spamBtn = new Button(".GCSDBRWBJX:nth-child(5) div .treeItemLabel" , "Spam");
      }
 
     clickInboxBtn(timeout=1000) {
@@ -27,6 +29,18 @@ class MessagesNavBar extends BaseForm {
     clickTrashBtn(timeout=1000) {
         cy.log(`Clicking ${this.trashBtn.name} from ${this.name}`);
         this.trashBtn.clickElement();
+        cy.wait(timeout);
+    }
+
+    clickDraftsBtn(timeout=1000) {
+        cy.log(`Clicking ${this.draftsBtn.name} from ${this.name}`);
+        this.draftsBtn.clickElement();
+        cy.wait(timeout);
+    }
+
+    clickSpamBtn(timeout=1000) {
+        cy.log(`Clicking ${this.spamBtn.name} from ${this.name}`);
+        this.spamBtn.clickElement();
         cy.wait(timeout);
     }
 }
