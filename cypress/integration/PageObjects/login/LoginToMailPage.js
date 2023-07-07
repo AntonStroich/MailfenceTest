@@ -27,10 +27,11 @@ class LoginToMailPage extends BaseForm {
         this.EnterBtn.clickElement();
     }
 
-    logInToMail(login, password) {
+    logInToMail(login, password, timeout=1000) {
         this.populateEmailAddressTxb(login);
         this.populatePasswordTxb(password);
         this.clickEnterBtn();
+        cy.wait(timeout);
     }
 
 }
