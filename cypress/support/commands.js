@@ -1,4 +1,4 @@
-import LandingPage from "../integration/PageObjects/elements/landing/LandingPage";
+import LandingPage from "../integration/PageObjects/landing/LandingPage";
 import LoginToMailPage from "../integration/PageObjects/login/LoginToMailPage";
 import MailBoxHeader from "../integration/PageObjects/mail_box/MailBoxHeader";
 import MailBoxUserMenu from "../integration/PageObjects/mail_box/MailBoxUserMenu";

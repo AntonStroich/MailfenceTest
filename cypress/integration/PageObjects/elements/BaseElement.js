@@ -15,22 +15,6 @@ class BaseElement {
         this.getElement().click();
     }
 
-    isElementVisible() {
-        cy.get(this.locator).should("be.visible");
-    }
-
-    isElementNotVisible() {
-        cy.get(this.locator).should("not.be.visible");
-    }
-
-    isElementNotExist() {
-        cy.get(this.locator).should("not.exist");
-    }
-
-    isElementHasValidName() {
-        cy.get(this.locator).should(`have.value, ${this.name}`);
-   }
-
 }
 
 export default BaseElement;

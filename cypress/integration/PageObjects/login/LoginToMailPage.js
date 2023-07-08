@@ -28,6 +28,7 @@ class LoginToMailPage extends BaseForm {
     }
 
     logInToMail(login, password, timeout=1000) {
+        cy.wait(timeout);
         this.populateEmailAddressTxb(login);
         this.populatePasswordTxb(password);
         this.clickEnterBtn();

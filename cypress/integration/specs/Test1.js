@@ -1,4 +1,14 @@
 ///<reference types = 'Cypress' />
+import LandingPage from "../PageObjects/landing/LandingPage";
+import LoginToMailPage from "../PageObjects/login/LoginToMailPage";
+import MailBoxHeader from "../PageObjects/mail_box/MailBoxHeader";
+import MailBoxUserMenu from "../PageObjects/mail_box/MailBoxUserMenu";
+import ToolBar from "../PageObjects/tool_bars/ToolBar";
+import MailBoxNewEmailForm from "../PageObjects/messages_page/MailBoxNewEmailForm";
+import DocumentsNavBar from "../PageObjects/navigation_bars/DocumentsNavBar";
+import DocList from "../PageObjects/lists/DocList";
+
+
 
 describe("The first test run", function() { 
     
@@ -19,7 +29,6 @@ describe("The first test run", function() {
             this.data = data;
             cy.loginAndClearAll(this.data.login, this.data.password);
         })
- 
     })
 
     it("The first test", function() {
@@ -29,8 +38,29 @@ describe("The first test run", function() {
         const filePath = this.data.filePath;
         const attachmentName = this.data.attachmentName;
         const attachmentText = this.data.attachmentText;
+        const landingPage = new LandingPage();
+        const loginToMailPage = new LoginToMailPage();
+        const mailBoxHeader = new MailBoxHeader();
+        const mailBoxUserMenu = new MailBoxUserMenu();
+        const documentsNavBar = new DocumentsNavBar();
+        const toolBar = new ToolBar();
+        const mailBoxNewEmailForm = new MailBoxNewEmailForm();
+        const docList = new DocList();
 
-        cy.logInToMailAndSendEmail(login, password, subject, filePath, attachmentName, attachmentText);
+        cy.log(`Step 1. Login to Mail.`);
+        landingPage.openAndClickMailBtn();
+        loginToMailPage.logInToMail(login, password);
+
+        cy.log(`Step 2. Attach .txt file`);
+        mailBoxHeader.clickDocumentsBtn();
         cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
+        cy.get("#new_doc input[type=file]", {timeout: 2000}).selectFile(`${filePath}\\${attachmentName}`, { action: "select", force: true });
+        cy.wait(2000);
+        toolBar.clickRefreshBtn();
+        docList.getDocTitleByIndex(0).should("have.attr", "title", `${attachmentName}`);
+
+        cy.log(`Log out`)
+        mailBoxHeader.clickUserBtn();
+        mailBoxUserMenu.clickLogOutBtn();
     })
 })

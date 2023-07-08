@@ -1,6 +1,6 @@
 ///<reference types = 'Cypress' />
-import Button from "../Button";
-import BaseForm from "../../BaseForm";
+import Button from "../elements/Button";
+import BaseForm from "../BaseForm";
 
 
 class LandingPage extends BaseForm {
@@ -8,16 +8,12 @@ class LandingPage extends BaseForm {
     constructor() {
         super(`Landing Page`);
         this.url = (Cypress.env('url'));   
-        this.MailBtn = new Button("button#signin", "Mail"); 
+        this.mailBtn = new Button("button#signin", "Mail"); 
     }
     
     clickMailBtn() {
-        cy.log(`Clicking ${this.MailBtn.name} from ${this.name}`)
-        this.MailBtn.clickElement();
-    }
-
-    isMailBtnVisible() {
-        this.MailBtn.isElementVisible();
+        cy.log(`Clicking ${this.mailBtn.name} from ${this.name}`)
+        this.mailBtn.clickElement();
     }
 
     openAndClickMailBtn() {
