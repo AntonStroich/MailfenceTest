@@ -46,7 +46,6 @@
     "concat-map": "^0.0.1",
     "core-util-is": "^1.0.2",
     "cross-spawn": "^7.0.3",
-    "cypress": "^12.13.0",
     "cypress-iframe": "^1.0.1",
     "D": "^1.0.0",
     "dashdash": "^1.14.1",
@@ -184,5 +183,8 @@
   "bugs": {
     "url": "https://github.com/AntonStroich/MailfenceTest/issues"
   },
-  "homepage": "https://github.com/AntonStroich/MailfenceTest#readme"
+  "homepage": "https://github.com/AntonStroich/MailfenceTest#readme",
+  "devDependencies": {
+    "cypress": "^12.17.1"
+  }
 }

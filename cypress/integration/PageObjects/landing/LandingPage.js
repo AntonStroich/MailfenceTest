@@ -8,7 +8,7 @@ class LandingPage extends BaseForm {
     constructor() {
         super(`Landing Page`);
         this.url = (Cypress.env('url'));   
-        this.mailBtn = new Button("button#signin", "Mail"); 
+        this.mailBtn = new Button("#signin", "Mail"); 
     }
     
     clickMailBtn() {
@@ -17,13 +17,12 @@ class LandingPage extends BaseForm {
     }
 
     openAndClickMailBtn() {
-        cy.clearCookies();
         this.open();
         this.clickMailBtn();
     }
 
     open() { 
-        cy.log(`Openning ${this.name}`)
+        cy.log(`Openning ${this.name}`);
         cy.visit(this.url);
     }
 

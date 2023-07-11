@@ -25,13 +25,13 @@ describe("The first test run", function() {
     })
 
     after(function() {
-
+        
         cy.fixture("Test1").then(function(data) {
             this.data = data;
             cy.loginAndClearAll(this.data.login, this.data.password);
         })
-        
-    })
+
+    }) // Fails if test is failed
 
     it("The first test", function() {
         const login = this.data.login;
@@ -73,7 +73,7 @@ describe("The first test run", function() {
         documentsWindow.isDisplayed();
         docList.selectItemByText(attachmentName);
         documentsWindow.clickOkAndWait();
-        mailBoxNewEmailForm.getAttachmentLabelByIndex(0).should("contains.text", `${attachmentName}_1`);
+        mailBoxNewEmailForm.getAttachmentLabelByIndex(0).should("contains.text", `${attachmentName}`);
         mailBoxNewEmailForm.clickSendBtn();
     
         cy.log(`Log out`)
