@@ -15,7 +15,7 @@ class MailBoxNewEmailForm extends BaseForm  {
         this.toTxb = new TextBox("#mailTo", "To");
         this.subjectTxb = new TextBox("#mailSubject", "Subject");
         this.attachmentDdn = new Dropdown(".GCSDBRWBNQ.menu", "Attachment");
-        this.attachmentLabel = new Label(".GCSDBRWBN .GCSDBRWBJRB", "Attachment label");
+        this.attachmentLabel = new Label("a.GCSDBRWBJRB", "Attachment label");
      }
 
      

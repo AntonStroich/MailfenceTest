@@ -4,6 +4,6 @@
     "subjectEmail": "Test Email",
     "textEmail": "",
     "filePath": "C:\\Users\\Anton.Stroich\\MailfenceTest\\cypress\\resources", 
-    "attachmentName": "TestAttachment_1.txt",
+    "attachmentName": "Test1_attachment.txt",
     "attachmentText": "Text of test attachment"
   }

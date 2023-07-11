@@ -17,6 +17,7 @@ class LandingPage extends BaseForm {
     }
 
     openAndClickMailBtn() {
+        cy.clearCookies();
         this.open();
         this.clickMailBtn();
     }

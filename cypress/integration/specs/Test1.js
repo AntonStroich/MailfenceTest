@@ -39,6 +39,7 @@ describe("The first test run", function() {
         const filePath = this.data.filePath;
         const attachmentName = this.data.attachmentName;
         const attachmentText = this.data.attachmentText;
+        const attachmentSize = this.data.attachmentSize;
         const landingPage = new LandingPage();
         const loginToMailPage = new LoginToMailPage();
         const mailBoxHeader = new MailBoxHeader();
@@ -59,7 +60,7 @@ describe("The first test run", function() {
         cy.get("#new_doc input[type=file]", {timeout: 2000}).selectFile(`${filePath}\\${attachmentName}`, { action: "select", force: true });
         cy.wait(2000);
         toolBar.clickRefreshBtn();
-        docList.getDocTitleByIndex(0).should("have.attr", "title", `${attachmentName}`);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}`);
 
         cy.log(`Step 3. Send email with attached file to yourself`);
         mailBoxHeader.clickMessagesBtn();
@@ -69,10 +70,9 @@ describe("The first test run", function() {
         mailBoxNewEmailForm.clickAttachmentsBtn();
         mailBoxNewEmailForm.selectFromDocumentToolOptionFromAttachmentDdn();
         documentsWindow.isDisplayed();
-        // docList.selectDocByTitle(attachmentName);
-        cy.get("#doc_list .GCSDBRWBPJB").eq(0).click(); // need to be replaced by docList.selectDocByTitle(attachmentName)
+        docList.selectItemByText(attachmentName);
         documentsWindow.clickOkAndWait();
-        mailBoxNewEmailForm.getAttachmentLabelByIndex(0).should("contain.text", `${attachmentName}`);
+        mailBoxNewEmailForm.getAttachmentLabelByIndex(0).should("contains.text", `${attachmentName}`);
         mailBoxNewEmailForm.clickSendBtn();
     
         cy.log(`Log out`)

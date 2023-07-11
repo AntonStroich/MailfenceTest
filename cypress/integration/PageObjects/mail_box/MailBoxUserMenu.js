@@ -7,7 +7,7 @@ class MailBoxUserMenu extends BaseForm {
 
     constructor() {
         super(`Mail box User menu`);
-        this.LogOutBtn = new Button(".GCSDBRWBFR div svg", "Log Out button");
+        this.LogOutBtn = new Button(".GCSDBRWBFR div svg", "Log Out");
     }
     
     clickLogOutBtn() {

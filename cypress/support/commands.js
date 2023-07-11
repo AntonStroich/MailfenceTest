@@ -74,3 +74,4 @@ import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_ba
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })
+  
