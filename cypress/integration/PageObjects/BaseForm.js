@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
 
 class BaseForm {
-    constructor(name) {
+    constructor(name, locator) {
         this.name = name;
     }
 }

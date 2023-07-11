@@ -7,6 +7,7 @@ import ToolBar from "../PageObjects/tool_bars/ToolBar";
 import MailBoxNewEmailForm from "../PageObjects/messages_page/MailBoxNewEmailForm";
 import DocumentsNavBar from "../PageObjects/navigation_bars/DocumentsNavBar";
 import DocList from "../PageObjects/lists/DocList";
+import DocumentsWindow from "../PageObjects/modal_windows/DocumentsWindow";
 
 
 
@@ -46,6 +47,7 @@ describe("The first test run", function() {
         const toolBar = new ToolBar();
         const mailBoxNewEmailForm = new MailBoxNewEmailForm();
         const docList = new DocList();
+        const documentsWindow = new DocumentsWindow();
 
         cy.log(`Step 1. Login to Mail.`);
         landingPage.openAndClickMailBtn();
@@ -59,6 +61,20 @@ describe("The first test run", function() {
         toolBar.clickRefreshBtn();
         docList.getDocTitleByIndex(0).should("have.attr", "title", `${attachmentName}`);
 
+        cy.log(`Step 3. Send email with attached file to yourself`);
+        mailBoxHeader.clickMessagesBtn();
+        toolBar.clickNewBtn();
+        mailBoxNewEmailForm.populateToTxb(login);
+        mailBoxNewEmailForm.populateSubjectTxb(subject);
+        mailBoxNewEmailForm.clickAttachmentsBtn();
+        mailBoxNewEmailForm.selectFromDocumentToolOptionFromAttachmentDdn();
+        documentsWindow.isDisplayed();
+        // docList.selectDocByTitle(attachmentName);
+        cy.get("#doc_list .GCSDBRWBPJB").eq(0).click(); // need to be replaced by docList.selectDocByTitle(attachmentName)
+        documentsWindow.clickOkAndWait();
+        mailBoxNewEmailForm.getAttachmentLabelByIndex(0).should("contain.text", `${attachmentName}`);
+        mailBoxNewEmailForm.clickSendBtn();
+    
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();
         mailBoxUserMenu.clickLogOutBtn();

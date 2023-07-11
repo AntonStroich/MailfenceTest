@@ -3,6 +3,8 @@ import BaseForm from "../BaseForm";
 import Button from "../elements/Button";
 import TextBox from "../elements/TextBox";
 import Dropdown from "../elements/Dropdown";
+import Label from "../elements/Label";
+
 
 class MailBoxNewEmailForm extends BaseForm  {
 
@@ -13,7 +15,10 @@ class MailBoxNewEmailForm extends BaseForm  {
         this.toTxb = new TextBox("#mailTo", "To");
         this.subjectTxb = new TextBox("#mailSubject", "Subject");
         this.attachmentDdn = new Dropdown(".GCSDBRWBNQ.menu", "Attachment");
+        this.attachmentLabel = new Label(".GCSDBRWBN .GCSDBRWBJRB", "Attachment label");
      }
+
+     
 
     clickSendBtn() {
         cy.log(`Clicking on ${this.sendBtn.name} from ${this.name}`);
@@ -35,9 +40,24 @@ class MailBoxNewEmailForm extends BaseForm  {
         this.subjectTxb.clearAndType(subject);
     }
 
-    selectOptionByTextFromAttachmentDdn(textOption, isForseTrue) {
+    selectFromYourComputerOptionFromAttachmentDdn(text = 'From your computer') {
+        cy.wait(1000);
         cy.log(`Selecting a value from the ${this.attachmentDdn.name}`);
-        this.attachmentDdn.selectOptionByText(`${this.attachmentDdn.locator} .GCSDBRWBFR`, textOption, isForseTrue);
+        this.attachmentDdn.selectOptionByText(text);
+    }
+
+    selectFromDocumentToolOptionFromAttachmentDdn(text = 'From document tool') {
+        cy.wait(1000);
+        cy.log(`Selecting a value from the ${this.attachmentDdn.name}`);
+        this.attachmentDdn.selectOptionByText(text);
+    }
+
+    getAttachmentLabel() {
+        return cy.get(this.attachmentLabel.locator);
+    }
+
+    getAttachmentLabelByIndex(index) {
+        return this.getAttachmentLabel().eq(index);
     }
 
 }

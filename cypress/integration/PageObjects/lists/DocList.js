@@ -17,7 +17,16 @@ class DocList extends BaseForm {
     getDocTitleByIndex(index) {
         return this.getDocTitle().eq(index);
     }
- 
+
+    selectDocByTitle(title) {
+        this.getDocTitle().each(function(element) {
+            let elementTitle = element.attr("title");
+            if (elementTitle = title){
+                element.click();
+            }
+        })
+    }
+  // This method does not work correctly
 }
 
 export default DocList;
