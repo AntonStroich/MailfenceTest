@@ -30,6 +30,7 @@ describe("The first test run", function() {
             this.data = data;
             cy.loginAndClearAll(this.data.login, this.data.password);
         })
+        
     })
 
     it("The first test", function() {
@@ -72,7 +73,7 @@ describe("The first test run", function() {
         documentsWindow.isDisplayed();
         docList.selectItemByText(attachmentName);
         documentsWindow.clickOkAndWait();
-        mailBoxNewEmailForm.getAttachmentLabelByIndex(0).should("contains.text", `${attachmentName}`);
+        mailBoxNewEmailForm.getAttachmentLabelByIndex(0).should("contains.text", `${attachmentName}_1`);
         mailBoxNewEmailForm.clickSendBtn();
     
         cy.log(`Log out`)
