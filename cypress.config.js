@@ -23,6 +23,12 @@ module.exports = defineConfig({
   e2e: {
     specPattern: "cypress/integration/specs/*.js",
     setupNodeEvents,
+    defaultCommandTimeout: 10000,
+    pageLoadTimeout: 100000,
+    taskTimeout: 100000,
+    requestTimeout: 10000,
+    responseTimeout: 50000,
+    testIsolation: true,
   },
   env: {
     url: "https://mailfence.com"
