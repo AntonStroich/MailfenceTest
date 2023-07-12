@@ -28,11 +28,11 @@ class LoginToMailPage extends BaseForm {
     }
 
     logInToMail(login, password, timeout=1000) {
-        cy.wait(3000);
+        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
         this.populateEmailAddressTxb(login);
         this.populatePasswordTxb(password);
         this.clickEnterBtn();
-        cy.wait(timeout);
+        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
     }
 
 }

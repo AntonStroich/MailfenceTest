@@ -14,13 +14,13 @@ class MailBoxHeader extends BaseForm  {
     clickMessagesBtn(timeout=1000) {
         cy.log(`Clicking on ${this.messagesBtn.name} from ${this.name}`);
         this.messagesBtn.clickElement();
-        cy.wait(timeout);
-    }
+        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
+     }
 
     clickDocumentsBtn(timeout=1000) {
         cy.log(`Clicking on ${this.documentsBtn.name} from ${this.name}`);
         this.documentsBtn.clickElement();
-        cy.wait(timeout);
+        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
     }
 
     clickUserBtn() {

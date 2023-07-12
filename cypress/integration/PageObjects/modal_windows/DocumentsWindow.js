@@ -35,7 +35,7 @@ class DocumentsWindow extends BaseForm {
     clickCancelAndWait(timeout=1000) {
         cy.log(`Clicking on ${this.cancelBtn.name} from ${this.name}`);
         this.clickCancelBtn();
-        cy.wait(timeout);
+        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
     }
 
     isDisplayed() {

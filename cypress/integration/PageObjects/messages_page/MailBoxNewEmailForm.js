@@ -41,13 +41,13 @@ class MailBoxNewEmailForm extends BaseForm  {
     }
 
     selectFromYourComputerOptionFromAttachmentDdn(text = 'From your computer') {
-        cy.wait(1000);
+        cy.wait(1000); // fails without cy.wait(); the current solution needs to be replaced
         cy.log(`Selecting a value from the ${this.attachmentDdn.name}`);
         this.attachmentDdn.selectOptionByText(text);
     }
 
     selectFromDocumentToolOptionFromAttachmentDdn(text = 'From document tool') {
-        cy.wait(1000);
+        cy.wait(1000); // fails without cy.wait(); the current solution needs to be replaced
         cy.log(`Selecting a value from the ${this.attachmentDdn.name}`);
         this.attachmentDdn.selectOptionByText(text);
     }

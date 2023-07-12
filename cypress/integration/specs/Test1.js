@@ -13,7 +13,7 @@ import DocumentsWindow from "../PageObjects/modal_windows/DocumentsWindow";
 
 describe("The first test run", function() { 
     
-    before(function() {
+    this.beforeEach(function() {
 
         cy.fixture("Test1").then(function(data) {
             this.data = data;
@@ -23,15 +23,6 @@ describe("The first test run", function() {
         })
  
     })
-
-    after(function() {
-        
-        cy.fixture("Test1").then(function(data) {
-            this.data = data;
-            cy.loginAndClearAll(this.data.login, this.data.password);
-        })
-
-    }) // Fails if test is failed
 
     it("The first test", function() {
         const login = this.data.login;
@@ -59,7 +50,7 @@ describe("The first test run", function() {
         mailBoxHeader.clickDocumentsBtn();
         cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
         cy.get("#new_doc input[type=file]", {timeout: 2000}).selectFile(`${filePath}\\${attachmentName}`, { action: "select", force: true });
-        cy.wait(2000);
+        cy.wait(2000); // fails without cy.wait(); the current solution needs to be replaced
         toolBar.clickRefreshBtn();
         docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}`);
 
