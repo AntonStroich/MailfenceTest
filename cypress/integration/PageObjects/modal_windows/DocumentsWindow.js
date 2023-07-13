@@ -8,8 +8,7 @@ import DocumentsNavBar from "../navigation_bars/DocumentsNavBar";
 class DocumentsWindow extends BaseForm {
 
     constructor() {
-        super(`Documents Window`);
-        this.locator = ".GCSDBRWBJY.GCSDBRWBKY.GCSDBRWBOD.GCSDBRWBFMB";
+        super(`.GCSDBRWBJY.GCSDBRWBKY.GCSDBRWBOD.GCSDBRWBFMB`, `Documents Window`);
         this.okBtn = new Button("#dialBtn_OK", "Yes");
         this.cancelBtn = new Button("#dialBtn_CANCEL", "Cancel");
         this.docList = new DocList();

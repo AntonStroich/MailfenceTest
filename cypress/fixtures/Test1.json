@@ -2,8 +2,6 @@
     "login": "cy20230531@mailfence.com",
     "password": "WqSLQVuYS%",
     "subjectEmail": "Test Email",
-    "textEmail": "",
     "filePath": "C:\\Users\\Anton.Stroich\\MailfenceTest\\cypress\\resources", 
-    "attachmentName": "TestAttachment1.txt",
-    "attachmentText": "Text of test attachment"
+    "attachmentName": "TestAttachment1.txt"
   }

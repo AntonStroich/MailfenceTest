@@ -5,7 +5,7 @@ import List from "../lists/List";
 class MailList extends List {
 
     constructor() {
-        super(`Mail list`, `#mailList`);
+        super(`#mailList`, `Mail list`, );
         this.itemTitle = new Label(`.listSubject`, `Items title from the ${this.name}`);
     }
  

@@ -4,8 +4,8 @@ import Button from "../elements/Button";
 
 class DocumentsNavBar extends BaseForm {
 
-    constructor() {
-        super(`Documents Nav bar`);
+    constructor(locator) {
+        super(locator,`Documents Nav bar`);
         this.locator = "div.GCSDBRWBG";
         this.myDocumentsBtn = new Button(".GCSDBRWBCX.treeItemRoot.GCSDBRWBKX.nodeSel:first-child", "My Documents");
         this.trashBtn = new Button("#doc_tree_trash" , "Trash");

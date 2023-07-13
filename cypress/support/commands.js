@@ -11,7 +11,6 @@ import DocumentsNavBar from "../integration/PageObjects/navigation_bars/Document
 import DocumentsToolBar  from "../integration/PageObjects/tool_bars/DocumentsToolBar";
 import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/DocumentsTabToolBarWithDeleteBtn";
 
-
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentText)=> { 
     cy.writeFile(`${filePath}\\${attachmentName}`, `${attachmentText}`);
     cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");

@@ -5,8 +5,8 @@ import ConfirmDeletionWindow from "../modal_windows/ConfirmDeletionWindow";
 
 class DocumentsTabToolBarWithDeleteBtn extends DocumentsToolBar {
 
-    constructor() {
-        super(`Tab of the Tool bar of the "Documents" page which has "Delete" button instead of "To Trash" button`);
+    constructor(locator) {
+        super(locator, `Tab of the Tool bar of the "Documents" page which has "Delete" button instead of "To Trash" button`);
         this.deleteBtn = new Button("div div[title='Delete']" , "Delete");
         this.confirmDeletionWindow = new ConfirmDeletionWindow();
      }

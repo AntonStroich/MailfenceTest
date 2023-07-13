@@ -6,6 +6,7 @@ import MailBoxUserMenu from "../PageObjects/mail_box/MailBoxUserMenu";
 import ToolBar from "../PageObjects/tool_bars/ToolBar";
 import MailBoxNewEmailForm from "../PageObjects/messages_page/MailBoxNewEmailForm";
 import DocumentsNavBar from "../PageObjects/navigation_bars/DocumentsNavBar";
+import MailList from "../PageObjects/lists/MailList";
 import DocList from "../PageObjects/lists/DocList";
 import DocumentsWindow from "../PageObjects/modal_windows/DocumentsWindow";
 
@@ -30,8 +31,6 @@ describe("The first test run", function() {
         const subject = this.data.subjectEmail;
         const filePath = this.data.filePath;
         const attachmentName = this.data.attachmentName;
-        const attachmentText = this.data.attachmentText;
-        const attachmentSize = this.data.attachmentSize;
         const landingPage = new LandingPage();
         const loginToMailPage = new LoginToMailPage();
         const mailBoxHeader = new MailBoxHeader();
@@ -39,8 +38,10 @@ describe("The first test run", function() {
         const documentsNavBar = new DocumentsNavBar();
         const toolBar = new ToolBar();
         const mailBoxNewEmailForm = new MailBoxNewEmailForm();
+        const mailList = new MailList();
         const docList = new DocList();
         const documentsWindow = new DocumentsWindow();
+
 
         cy.log(`Step 1. Login to Mail.`);
         landingPage.openAndClickMailBtn();
@@ -66,9 +67,17 @@ describe("The first test run", function() {
         documentsWindow.clickOkAndWait();
         mailBoxNewEmailForm.getAttachmentLabelByIndex(0).should("contains.text", `${attachmentName}`);
         mailBoxNewEmailForm.clickSendBtn();
-    
+
+        cy.log(`Step 4. Check that email recieved`);
+        mailBoxNewEmailForm.clickSendBtn();
+        toolBar.getForm().should("be.visible");
+        cy.wait(5000);
+        toolBar.clickRefreshBtn();
+        mailList.getItemTitleByIndex(0).should("have.attr", "title", `${subject}`);
+
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();
         mailBoxUserMenu.clickLogOutBtn();
+        
     })
 })

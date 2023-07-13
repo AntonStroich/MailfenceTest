@@ -5,8 +5,8 @@ import TextBox from "../elements/TextBox";
 
 class LoginToMailPage extends BaseForm {
 
-    constructor() {
-       super(`Login to Mail page`);
+    constructor(locator,) {
+       super(locator, `Login to Mail page`);
        this.EmailAddressTxb = new TextBox("input#UserID", "Email Addres");
        this.PasswordTxb = new TextBox("input#Password", "Password");
        this.EnterBtn = new Button("input[value='Enter']", "Mail");

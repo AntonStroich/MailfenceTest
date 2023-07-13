@@ -6,10 +6,11 @@ import Dropdown from "../elements/Dropdown";
 import Label from "../elements/Label";
 
 
+
 class MailBoxNewEmailForm extends BaseForm  {
 
-    constructor() {
-        super(`Mail Box New email form`);
+    constructor(locator,) {
+        super(locator,`Mail Box New email form`);
         this.sendBtn = new Button("#mailSend" , "Send");
         this.attachmentBtn= new Button("a.GCSDBRWBISB.GCSDBRWBJSB:nth-child(2)" , "Attachment");
         this.toTxb = new TextBox("#mailTo", "To");
@@ -18,7 +19,6 @@ class MailBoxNewEmailForm extends BaseForm  {
         this.attachmentLabel = new Label("a.GCSDBRWBJRB", "Attachment label");
      }
 
-     
 
     clickSendBtn() {
         cy.log(`Clicking on ${this.sendBtn.name} from ${this.name}`);
@@ -35,9 +35,9 @@ class MailBoxNewEmailForm extends BaseForm  {
         this.toTxb.clearAndType(`${email}{enter}`);
     }
 
-    populateSubjectTxb(subject) {
+    populateSubjectTxb(subjectEmail) {
         cy.log(`Filling the ${this.subjectTxb.name} from ${this.name}`);
-        this.subjectTxb.clearAndType(subject);
+        this.subjectTxb.clearAndType(subjectEmail);
     }
 
     selectFromYourComputerOptionFromAttachmentDdn(text = 'From your computer') {

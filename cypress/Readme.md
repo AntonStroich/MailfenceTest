@@ -1,1 +1,2 @@
-Required installation fs plugin
+Required installation: 
+- fs plugin

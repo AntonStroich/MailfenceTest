@@ -6,7 +6,7 @@ import Button from "../elements/Button";
 class ToolBar extends BaseForm  {
 
     constructor() {
-        super(`Tool bar`);
+        super(".GCSDBRWBKV.toolbar", `Tool bar`);
         this.selectAllChb = new Checkbox("div.icon.icon-checkb" , "Select All");
         this.newBtn = new Button("div div[title='New']" , "New");
         this.refreshBtn = new Button("div div[title='Refresh']" , "Refresh");

@@ -5,7 +5,7 @@ import List from "../lists/List";
 class DocList extends List {
 
     constructor() {
-        super(`Doc list`, `#doc_list`);
+        super(`#doc_list`, `Doc list`);
         this.itemTitle = new Label(`.GCSDBRWBPJB`, `Items title from the ${this.name}`);
     }
 }

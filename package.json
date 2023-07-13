@@ -46,7 +46,6 @@
     "concat-map": "^0.0.1",
     "core-util-is": "^1.0.2",
     "cross-spawn": "^7.0.3",
-    "cypress-iframe": "^1.0.1",
     "D": "^1.0.0",
     "dashdash": "^1.14.1",
     "dayjs": "^1.11.7",

@@ -5,8 +5,8 @@ import MailList from "../lists/MailList";
 
 class MessagesToolBar extends ToolBar  {
 
-    constructor() {
-        super(`Tool bar of the Messages page`);
+    constructor(locator) {
+        super(locator, `Tool bar of the Messages page`);
      }
 
     deleteAllIfNotEmpty(){ 

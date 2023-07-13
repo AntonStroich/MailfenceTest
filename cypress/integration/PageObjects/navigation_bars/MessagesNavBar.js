@@ -5,8 +5,7 @@ import Button from "../elements/Button";
 class MessagesNavBar extends BaseForm {
 
     constructor() {
-        super(`Messages Nav bar`);
-        this.locator = "div.GCSDBRWBG";
+        super(`div.GCSDBRWBG`, `Messages Nav bar`);
         this.inboxBtn = new Button("#treeInbox" , "Inbox")
         this.sentBtn = new Button("#treeSend" , "Sent");
         this.trashBtn = new Button(".GCSDBRWBJX:nth-child(3) div .treeItemLabel" , "Trash");

@@ -5,8 +5,8 @@ import Button from "../elements/Button";
 
 class ConfirmDeletionWindow extends BaseForm {
 
-    constructor() {
-        super(`Confirm Deletion Window`);
+    constructor(locator) {
+        super(locator,`Confirm Deletion Window`);
         this.yesBtn = new Button("#dialBtn_YES", "Yes");
     }
     

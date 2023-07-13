@@ -4,10 +4,9 @@ import Label from "../elements/Label";
 
 class List extends BaseForm {
 
-    constructor(name, locator) {
-        super(name);
-        this.locator = locator;
-        this.itemTitle = new Label(locator, name);
+    constructor(locator) {
+        super(locator, `List`);
+        this.itemTitle = new Label(locator, `Item Title`);
     }
 
     getList() {

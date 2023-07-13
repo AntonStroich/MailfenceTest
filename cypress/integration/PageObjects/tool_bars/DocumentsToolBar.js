@@ -5,8 +5,8 @@ import DocList from "../lists/DocList";
 
 class DocumentsToolBar extends ToolBar  {
 
-    constructor() {
-        super(`Tool bar of the Documents page`);
+    constructor(locator, ) {
+        super(locator, `Tool bar of the Documents page`);
      }
 
     deleteAllIfNotEmpty(){ 
