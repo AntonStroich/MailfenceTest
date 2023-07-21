@@ -5,7 +5,7 @@ import MailBoxUserMenu from "../integration/PageObjects/mail_box/MailBoxUserMenu
 import ToolBar from "../integration/PageObjects/tool_bars/ToolBar";
 import MessagesToolBar from "../integration/PageObjects/tool_bars/MessagesToolBar";
 import MessagesTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/MessagesTabToolBarWithDeleteBtn";
-import MailBoxNewEmailForm from "../integration/PageObjects/messages_page/MailBoxNewEmailForm";
+import NewEmailForm from "../integration/PageObjects/messages_page/NewEmailForm";
 import MessagesNavBar from "../integration/PageObjects/navigation_bars/MessagesNavBar";
 import DocumentsNavBar from "../integration/PageObjects/navigation_bars/DocumentsNavBar";
 import DocumentsToolBar  from "../integration/PageObjects/tool_bars/DocumentsToolBar";
@@ -23,16 +23,16 @@ import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_ba
     const mailBoxUserMenu = new MailBoxUserMenu();
     const documentsNavBar = new DocumentsNavBar();
     const toolBar = new ToolBar();
-    const mailBoxNewEmailForm = new MailBoxNewEmailForm();
+    const newEmailForm = new NewEmailForm();
     
     
     landingPage.openAndClickMailBtn();
     loginToMailPage.logInToMail(login, password);
     mailBoxHeader.clickMessagesBtn();
     toolBar.clickNewBtn();
-    mailBoxNewEmailForm.populateToTxb(login);
-    mailBoxNewEmailForm.populateSubjectTxb(subject);
-    mailBoxNewEmailForm.clickSendBtn();
+    newEmailForm.populateToTxb(login);
+    newEmailForm.populateSubjectTxb(subject);
+    newEmailForm.clickSendBtn();
     mailBoxHeader.clickDocumentsBtn();
     documentsNavBar.clickMyDocumentsBtn();
     documentsNavBar.clickTrashBtn();

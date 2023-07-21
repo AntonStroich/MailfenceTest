@@ -7,7 +7,7 @@ import Label from "../elements/Label";
 
 
 
-class MailBoxNewEmailForm extends BaseForm  {
+class NewEmailForm extends BaseForm  {
 
     constructor(locator,) {
         super(locator,`Mail Box New email form`);
@@ -62,4 +62,4 @@ class MailBoxNewEmailForm extends BaseForm  {
 
 }
 
-export default MailBoxNewEmailForm;
+export default NewEmailForm;
