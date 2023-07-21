@@ -1,13 +1,13 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
 import Button from "../elements/Button";
 import TextBox from "../elements/TextBox";
 import Dropdown from "../elements/Dropdown";
 import Label from "../elements/Label";
+import EmailForm from "../messages_page/EmailForm";
 
 
 
-class NewEmailForm extends BaseForm  {
+class NewEmailForm extends EmailForm  {
 
     constructor(locator,) {
         super(locator,`Mail Box New email form`);
@@ -16,7 +16,6 @@ class NewEmailForm extends BaseForm  {
         this.toTxb = new TextBox("#mailTo", "To");
         this.subjectTxb = new TextBox("#mailSubject", "Subject");
         this.attachmentDdn = new Dropdown(".GCSDBRWBNQ.menu", "Attachment");
-        this.attachmentLabel = new Label("a.GCSDBRWBJRB", "Attachment label");
      }
 
 
@@ -50,14 +49,6 @@ class NewEmailForm extends BaseForm  {
         cy.wait(1000); // fails without cy.wait(); the current solution needs to be replaced
         cy.log(`Selecting a value from the ${this.attachmentDdn.name}`);
         this.attachmentDdn.selectOptionByText(text);
-    }
-
-    getAttachmentLabel() {
-        return cy.get(this.attachmentLabel.locator);
-    }
-
-    getAttachmentLabelByIndex(index) {
-        return this.getAttachmentLabel().eq(index);
     }
 
 }

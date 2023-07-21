@@ -19,6 +19,7 @@ class List extends BaseForm {
     }
 
     selectItemByText(text) {
+        cy.log(`Selecting an item by ${text}`);
         this.findItemByText(text).click();
     }
 
@@ -29,6 +30,11 @@ class List extends BaseForm {
 
     getItemTitleByIndex(index) {
         return this.getItemTitle().eq(index);
+    }
+
+    selectItemByIndex(index) {
+        cy.log(`Selecting an item by ${index}`);
+        this.getItemTitleByIndex(index).click();
     }
 
 }

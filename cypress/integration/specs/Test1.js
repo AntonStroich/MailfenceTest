@@ -9,6 +9,7 @@ import DocumentsNavBar from "../PageObjects/navigation_bars/DocumentsNavBar";
 import MailList from "../PageObjects/lists/MailList";
 import DocList from "../PageObjects/lists/DocList";
 import DocumentsWindow from "../PageObjects/modal_windows/DocumentsWindow";
+import ExistedEmailForm from "../PageObjects/messages_page/ExistedEmailForm";
 
 
 
@@ -41,6 +42,7 @@ describe("The first test run", function() {
         const mailList = new MailList();
         const docList = new DocList();
         const documentsWindow = new DocumentsWindow();
+        const existedEmailForm = new ExistedEmailForm();
 
 
         cy.log(`Step 1. Login to Mail.`);
@@ -65,7 +67,7 @@ describe("The first test run", function() {
         documentsWindow.isDisplayed();
         docList.selectItemByText(attachmentName);
         documentsWindow.clickOkAndWait();
-        newEmailForm.getAttachmentLabelByIndex(0).should("contains.text", `${attachmentName}`);
+        newEmailForm.getAttachmentLnkByIndex(0).should("contains.text", `${attachmentName}`);
         newEmailForm.clickSendBtn();
 
         cy.log(`Step 4. Check that email recieved`);
@@ -74,6 +76,11 @@ describe("The first test run", function() {
         cy.wait(5000);
         toolBar.clickRefreshBtn();
         mailList.getItemTitleByIndex(0).should("have.attr", "title", `${subject}`);
+
+        cy.log(`Step 5. Open recieved email`);
+        mailList.selectItemByIndex(0);
+        existedEmailForm.getForm().should("be.visible");
+        existedEmailForm.getSubjectLbl().should("have.text", `${subject}`);
 
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();
