@@ -5,7 +5,7 @@ import DocumentsWindow from "./DocumentsWindow";
 class AddDocumentToEmailWindow extends DocumentsWindow {
 
     constructor() {
-        super(`.GCSDBRWBJY.GCSDBRWBKY.GCSDBRWBOD.GCSDBRWBFMB`, `Window with documents to attach them to a new email`);
+        super(`.GCSDBRWBJY.GCSDBRWBKY.GCSDBRWBOD.GCSDBRWBFMB`, `Window to download a file from the Documents tool to an email`);
     }
     
 }

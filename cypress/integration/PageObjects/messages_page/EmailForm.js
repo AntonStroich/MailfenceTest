@@ -15,6 +15,10 @@ class EmailForm extends BaseForm  {
         return cy.get(this.attachmentLnk.locator);
     }
 
+    getAttachmentDdn() {
+        return cy.get(this.attachmentDdn.locator);
+    }
+
     getAttachmentLnkByIndex(index) {
         return this.getAttachmentLnk().eq(index);
     }

@@ -13,7 +13,7 @@ import ExistedEmailForm from "../PageObjects/messages_page/ExistedEmailForm";
 import DownloadDocumentFromEmailWindow from "../PageObjects/modal_windows/DownloadDocumentFromEmailWindow";
 
 const FROM_DOCUMENT_TOOL = "From document tool";
-const SAVE_IN_Documents = "Save in Documents";
+const SAVE_IN_DOCUMENTS = "Save in Documents";
 
 
 
@@ -68,6 +68,7 @@ describe("The first test run", function() {
         newEmailForm.populateToTxb(login);
         newEmailForm.populateSubjectTxb(subject);
         newEmailForm.clickAttachmentsBtn();
+        newEmailForm.getAttachmentDdn().should("be.visible");
         newEmailForm.selectFromAttachmentDdnByText(FROM_DOCUMENT_TOOL);
         addDocumentToEmailWindow.getForm().should("be.visible");
         docList.selectItemByText(attachmentName);
@@ -88,7 +89,12 @@ describe("The first test run", function() {
         existedEmailForm.getSubjectLbl().should("have.text", `${subject}`);
 
         cy.log(`Step 6. Save the attached file to documents by 'Сохранить в документах' button`);
-
+        existedEmailForm.clickAttachmentLnkArrowLinkByIndex(0);
+        existedEmailForm.getAttachmentDdn().should("be.visible");
+        existedEmailForm.selectFromAttachmentDdnByText(SAVE_IN_DOCUMENTS);
+        downloadDocumentFromEmailWindow.getForm().should("be.visible");
+        downloadDocumentFromEmailWindow.clickMyDocumentsBtn();
+        downloadDocumentFromEmailWindow.clickOkAndWait();
 
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();

@@ -16,12 +16,17 @@ class ExistedEmailForm extends EmailForm  {
         return this.subjectLbl.getElement()
     }
 
+    getAttachmentArrowLnk() {
+        return cy.get(this.attachmentArrowLink.locator);
+    }
+
     getAttachmentLnkArrowLinkByIndex(index) {
-        return this.getAttachmentLnkByIndex(index).find(this.attachmentArrowLink);
+        return this.getAttachmentArrowLnk().eq(index);
     }
 
     clickAttachmentLnkArrowLinkByIndex(index) {
-        this.getAttachmentLnkArrowLinkByIndex(index).click();
+        cy.log(`Clicking ${this.attachmentArrowLink} for the attachment #${index + 1}`);
+        this.getAttachmentLnkArrowLinkByIndex(index).click({force: true});
     }
 }
 

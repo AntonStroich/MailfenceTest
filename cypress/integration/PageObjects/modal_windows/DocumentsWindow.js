@@ -1,9 +1,6 @@
 ///<reference types = 'Cypress' />
 import BaseForm from "../BaseForm";
 import Button from "../elements/Button";
-import DocList from "../lists/DocList";
-import DocumentsNavBar from "../navigation_bars/DocumentsNavBar";
-
 
 class DocumentsWindow extends BaseForm {
 
@@ -11,8 +8,6 @@ class DocumentsWindow extends BaseForm {
         super(locator, `Documents Window`);
         this.okBtn = new Button("#dialBtn_OK", "Yes");
         this.cancelBtn = new Button("#dialBtn_CANCEL", "Cancel");
-        this.docList = new DocList();
-        this.DocumentsNavBar = new DocumentsNavBar();
     }
     
     clickOkBtn() {
