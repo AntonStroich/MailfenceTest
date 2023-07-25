@@ -8,8 +8,12 @@ import NewEmailForm from "../PageObjects/messages_page/NewEmailForm";
 import DocumentsNavBar from "../PageObjects/navigation_bars/DocumentsNavBar";
 import MailList from "../PageObjects/lists/MailList";
 import DocList from "../PageObjects/lists/DocList";
-import DocumentsWindow from "../PageObjects/modal_windows/DocumentsWindow";
+import AddDocumentToEmailWindow from "../PageObjects/modal_windows/AddDocumentToEmailWindow";
 import ExistedEmailForm from "../PageObjects/messages_page/ExistedEmailForm";
+import DownloadDocumentFromEmailWindow from "../PageObjects/modal_windows/DownloadDocumentFromEmailWindow";
+
+const FROM_DOCUMENT_TOOL = "From document tool";
+const SAVE_IN_Documents = "Save in Documents";
 
 
 
@@ -41,8 +45,9 @@ describe("The first test run", function() {
         const newEmailForm = new NewEmailForm();
         const mailList = new MailList();
         const docList = new DocList();
-        const documentsWindow = new DocumentsWindow();
+        const addDocumentToEmailWindow = new AddDocumentToEmailWindow();
         const existedEmailForm = new ExistedEmailForm();
+        const downloadDocumentFromEmailWindow = new DownloadDocumentFromEmailWindow();
 
 
         cy.log(`Step 1. Login to Mail.`);
@@ -63,10 +68,10 @@ describe("The first test run", function() {
         newEmailForm.populateToTxb(login);
         newEmailForm.populateSubjectTxb(subject);
         newEmailForm.clickAttachmentsBtn();
-        newEmailForm.selectFromDocumentToolOptionFromAttachmentDdn();
-        documentsWindow.isDisplayed();
+        newEmailForm.selectFromAttachmentDdnByText(FROM_DOCUMENT_TOOL);
+        addDocumentToEmailWindow.getForm().should("be.visible");
         docList.selectItemByText(attachmentName);
-        documentsWindow.clickOkAndWait();
+        addDocumentToEmailWindow.clickOkAndWait();
         newEmailForm.getAttachmentLnkByIndex(0).should("contains.text", `${attachmentName}`);
         newEmailForm.clickSendBtn();
 
@@ -81,6 +86,9 @@ describe("The first test run", function() {
         mailList.selectItemByIndex(0);
         existedEmailForm.getForm().should("be.visible");
         existedEmailForm.getSubjectLbl().should("have.text", `${subject}`);
+
+        cy.log(`Step 6. Save the attached file to documents by 'Сохранить в документах' button`);
+
 
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();

@@ -7,8 +7,8 @@ import DocumentsNavBar from "../navigation_bars/DocumentsNavBar";
 
 class DocumentsWindow extends BaseForm {
 
-    constructor() {
-        super(`.GCSDBRWBJY.GCSDBRWBKY.GCSDBRWBOD.GCSDBRWBFMB`, `Documents Window`);
+    constructor(locator) {
+        super(locator, `Documents Window`);
         this.okBtn = new Button("#dialBtn_OK", "Yes");
         this.cancelBtn = new Button("#dialBtn_CANCEL", "Cancel");
         this.docList = new DocList();
@@ -35,10 +35,6 @@ class DocumentsWindow extends BaseForm {
         cy.log(`Clicking on ${this.cancelBtn.name} from ${this.name}`);
         this.clickCancelBtn();
         cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
-    }
-
-    isDisplayed() {
-        cy.get(this.locator).should("be.visible");
     }
 
 }
