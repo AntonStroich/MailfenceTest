@@ -1,9 +1,9 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
+import MailBoxMainArea from "../mail_box/MailBoxMainArea";
 import Link from "../elements/Link";
 import Dropdown from "../elements/Dropdown";
 
-class EmailForm extends BaseForm  {
+class EmailForm extends MailBoxMainArea  {
 
     constructor(locator) {
         super(locator,`Email form`);

@@ -1,11 +1,11 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
+import MailBoxMainArea from "../mail_box/MailBoxMainArea";
 import Button from "../elements/Button";
 
-class MessagesNavBar extends BaseForm {
+class MessagesNavBar extends MailBoxMainArea {
 
     constructor() {
-        super(`div.GCSDBRWBG`, `Messages Nav bar`);
+        super(`div.GCSDBRWBH.appLeftPanel`, `Messages Nav bar`);
         this.inboxBtn = new Button("#treeInbox" , "Inbox")
         this.sentBtn = new Button("#treeSend" , "Sent");
         this.trashBtn = new Button(".GCSDBRWBJX:nth-child(3) div .treeItemLabel" , "Trash");

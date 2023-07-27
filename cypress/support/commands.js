@@ -11,33 +11,9 @@ import DocumentsNavBar from "../integration/PageObjects/navigation_bars/Document
 import DocumentsToolBar  from "../integration/PageObjects/tool_bars/DocumentsToolBar";
 import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/DocumentsTabToolBarWithDeleteBtn";
 
-  Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentText)=> { 
-    cy.writeFile(`${filePath}\\${attachmentName}`, `${attachmentText}`);
-    cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
-  })
-
-  Cypress.Commands.add("logInToMailAndSendEmail", (login, password, subject, filePath, attachmentName, attachmentText)=> { 
-    const landingPage = new LandingPage();
-    const loginToMailPage = new LoginToMailPage();
-    const mailBoxHeader = new MailBoxHeader();
-    const mailBoxUserMenu = new MailBoxUserMenu();
-    const documentsNavBar = new DocumentsNavBar();
-    const toolBar = new ToolBar();
-    const newEmailForm = new NewEmailForm();
-    
-    
-    landingPage.openAndClickMailBtn();
-    loginToMailPage.logInToMail(login, password);
-    mailBoxHeader.clickMessagesBtn();
-    toolBar.clickNewBtn();
-    newEmailForm.populateToTxb(login);
-    newEmailForm.populateSubjectTxb(subject);
-    newEmailForm.clickSendBtn();
-    mailBoxHeader.clickDocumentsBtn();
-    documentsNavBar.clickMyDocumentsBtn();
-    documentsNavBar.clickTrashBtn();
-    mailBoxHeader.clickUserBtn();
-    mailBoxUserMenu.clickLogOutBtn();
+  Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentExtension, attachmentText)=> { 
+    cy.writeFile(`${filePath}\\${attachmentName}.${attachmentExtension}`, `${attachmentText}`);
+    cy.readFile(`${filePath}\\${attachmentName}.${attachmentExtension}`).should("not.be.null");
   })
 
   Cypress.Commands.add("loginAndClearAll", (login, password)=> {

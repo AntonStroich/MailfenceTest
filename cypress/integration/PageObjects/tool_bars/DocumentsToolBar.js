@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
 import ToolBar from "./ToolBar";
-import DocumentsNavBar from "../navigation_bars/DocumentsNavBar";
 import DocList from "../lists/DocList";
+import MailBoxMainArea from "../mail_box/MailBoxMainArea";
 
 class DocumentsToolBar extends ToolBar  {
 
@@ -10,10 +10,10 @@ class DocumentsToolBar extends ToolBar  {
      }
 
     deleteAllIfNotEmpty(){ 
-        const documentsNavBar = new DocumentsNavBar();
+        const mailBoxMainArea = new MailBoxMainArea();
         const docList = new DocList();
     
-        cy.get(`${documentsNavBar.locator}`).then((element)=> {
+        cy.get(`${mailBoxMainArea.locator}`).then((element)=> {
           if (element.find(`${docList.locator}`).length > 0) {
             this.deleteAll();
            }

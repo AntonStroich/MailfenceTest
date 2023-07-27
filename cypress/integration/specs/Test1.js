@@ -24,8 +24,8 @@ describe("The first test run", function() {
         cy.fixture("Test1").then(function(data) {
             this.data = data;
             cy.loginAndClearAll(this.data.login, this.data.password);
-            cy.task(`deleteFile`, `${this.data.filePath}\\${this.data.attachmentName}`);
-            cy.generateAttachment(this.data.filePath, this.data.attachmentName, this.data.attachmentText);
+            cy.task(`deleteFile`, `${this.data.filePath}\\${this.data.attachmentName}.${this.data.attachmentExtension}`);
+            cy.generateAttachment(this.data.filePath, this.data.attachmentName, this.data.attachmentExtension, this.data.attachmentText);
         })
  
     })
@@ -36,6 +36,7 @@ describe("The first test run", function() {
         const subject = this.data.subjectEmail;
         const filePath = this.data.filePath;
         const attachmentName = this.data.attachmentName;
+        const attachmentExtension = this.data.attachmentExtension;
         const landingPage = new LandingPage();
         const loginToMailPage = new LoginToMailPage();
         const mailBoxHeader = new MailBoxHeader();
@@ -56,11 +57,11 @@ describe("The first test run", function() {
 
         cy.log(`Step 2. Attach .txt file`);
         mailBoxHeader.clickDocumentsBtn();
-        cy.readFile(`${filePath}\\${attachmentName}`).should("not.be.null");
-        cy.get("#new_doc input[type=file]", {timeout: 2000}).selectFile(`${filePath}\\${attachmentName}`, { action: "select", force: true });
+        cy.readFile(`${filePath}\\${attachmentName}.${attachmentExtension}`).should("not.be.null");
+        cy.get("#new_doc input[type=file]", {timeout: 2000}).selectFile(`${filePath}\\${attachmentName}.${attachmentExtension}`, { action: "select", force: true });
         cy.wait(2000); // fails without cy.wait(); the current solution needs to be replaced
         toolBar.clickRefreshBtn();
-        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}`);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
 
         cy.log(`Step 3. Send email with attached file to yourself`);
         mailBoxHeader.clickMessagesBtn();
@@ -73,7 +74,7 @@ describe("The first test run", function() {
         addDocumentToEmailWindow.getForm().should("be.visible");
         docList.selectItemByText(attachmentName);
         addDocumentToEmailWindow.clickOkAndWait();
-        newEmailForm.getAttachmentLnkByIndex(0).should("contains.text", `${attachmentName}`);
+        newEmailForm.getAttachmentLnkByIndex(0).should("contains.text", `${attachmentName}.${attachmentExtension}`);
         newEmailForm.clickSendBtn();
 
         cy.log(`Step 4. Check that email recieved`);
@@ -95,6 +96,13 @@ describe("The first test run", function() {
         downloadDocumentFromEmailWindow.getForm().should("be.visible");
         downloadDocumentFromEmailWindow.clickMyDocumentsBtn();
         downloadDocumentFromEmailWindow.clickOkAndWait();
+
+        cy.log(`Step 7. Open documents area`);
+        mailBoxHeader.clickDocumentsBtn();
+        documentsNavBar.clickMyDocumentsBtn();
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
+        docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`);
+
 
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();

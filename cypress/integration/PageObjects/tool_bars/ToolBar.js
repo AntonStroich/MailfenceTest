@@ -1,9 +1,9 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
+import MailBoxMainArea from "../mail_box/MailBoxMainArea";
 import Checkbox from "../elements/Checkbox";
 import Button from "../elements/Button";
 
-class ToolBar extends BaseForm  {
+class ToolBar extends MailBoxMainArea  {
 
     constructor() {
         super(".GCSDBRWBKV.toolbar", `Tool bar`);

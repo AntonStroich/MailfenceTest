@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
 import ToolBar from "./ToolBar";
-import MessagesNavBar from "../navigation_bars/MessagesNavBar";
 import MailList from "../lists/MailList";
+import MailBoxMainArea from "../mail_box/MailBoxMainArea";
 
 class MessagesToolBar extends ToolBar  {
 
@@ -10,10 +10,10 @@ class MessagesToolBar extends ToolBar  {
      }
 
     deleteAllIfNotEmpty(){ 
-        const messagesNavBar = new MessagesNavBar();
-        const mailList = new MailList();
+       const mailBoxMainArea = new MailBoxMainArea();
+       const mailList = new MailList();
     
-        cy.get(`${messagesNavBar.locator}`).then((element)=> {
+        cy.get(`${mailBoxMainArea.locator}`).then((element)=> {
           if (element.find(`${mailList.locator}`).length > 0) {
             this.deleteAll();
            }
