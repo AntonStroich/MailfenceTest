@@ -22,10 +22,10 @@ describe("The first test run", function() {
     this.beforeEach(function() {
 
         cy.fixture("Test1").then(function(data) {
-            this.data = data;
-            cy.loginAndClearAll(this.data.login, this.data.password);
-            cy.task(`deleteFile`, `${this.data.filePath}\\${this.data.attachmentName}.${this.data.attachmentExtension}`);
-            cy.generateAttachment(this.data.filePath, this.data.attachmentName, this.data.attachmentExtension, this.data.attachmentText);
+           this.data = data;
+           cy.loginAndClearAll(this.data.login, this.data.password);
+           cy.task(`deleteFile`, `${this.data.filePath}\\${this.data.attachmentName}.${this.data.attachmentExtension}`);
+           cy.generateAttachment(this.data.filePath, this.data.attachmentName, this.data.attachmentExtension, this.data.attachmentText);
         })
  
     })
@@ -65,7 +65,7 @@ describe("The first test run", function() {
 
         cy.log(`Step 3. Send email with attached file to yourself`);
         mailBoxHeader.clickMessagesBtn();
-        toolBar.clickNewBtn();
+        toolBar.clickNewBtn(); /* Starting from this point Step 8 fails */
         newEmailForm.populateToTxb(login);
         newEmailForm.populateSubjectTxb(subject);
         newEmailForm.clickAttachmentsBtn();
@@ -99,15 +99,17 @@ describe("The first test run", function() {
 
         cy.log(`Step 7. Open documents area`);
         mailBoxHeader.clickDocumentsBtn();
-        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
-        docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`);
+        docList.getItemTitle().should("have.length", 2);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
+        docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
         cy.log(`Step 8. Move file from "Мои документы" folder to "Trash" folder by Drag'n'drop action`);
-
-        // docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`);
-        // documentsNavBar.clickTrashBtn();
-        // docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
-
+        cy.dragAndDrop(`#doc_list .GCSDBRWBPJB`, 1, documentsNavBar.trashBtn.locator);
+        docList.getItemTitle().should("have.length", 1);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
+        documentsNavBar.clickTrashBtn();
+        docList.getItemTitle().should("have.length", 1);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();
