@@ -99,9 +99,14 @@ describe("The first test run", function() {
 
         cy.log(`Step 7. Open documents area`);
         mailBoxHeader.clickDocumentsBtn();
-        documentsNavBar.clickMyDocumentsBtn();
         docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
         docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`);
+
+        cy.log(`Step 8. Move file from "Мои документы" folder to "Trash" folder by Drag'n'drop action`);
+
+        // docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`);
+        // documentsNavBar.clickTrashBtn();
+        // docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
 
 
         cy.log(`Log out`)

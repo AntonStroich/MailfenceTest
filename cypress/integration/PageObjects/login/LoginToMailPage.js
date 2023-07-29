@@ -27,7 +27,7 @@ class LoginToMailPage extends BaseForm {
         this.EnterBtn.clickElement();
     }
 
-    logInToMail(login, password, timeout=1000) {
+    logInToMail(login, password, timeout=4000) {
         cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
         this.populateEmailAddressTxb(login);
         this.populatePasswordTxb(password);

@@ -184,6 +184,6 @@
   },
   "homepage": "https://github.com/AntonStroich/MailfenceTest#readme",
   "devDependencies": {
-    "cypress": "^12.17.1"
+    "cypress": "^12.17.2"
   }
 }
