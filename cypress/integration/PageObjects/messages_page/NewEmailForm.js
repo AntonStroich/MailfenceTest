@@ -5,8 +5,8 @@ import EmailForm from "../messages_page/EmailForm";
 
 class NewEmailForm extends EmailForm  {
 
-    constructor(locator,) {
-        super(locator,`New email form`);
+    constructor() {
+        super(`.GCSDBRWBMSB.GCSDBRWBN`,`New email form`);
         this.sendBtn = new Button("#mailSend" , "Send");
         this.attachmentBtn= new Button("a.GCSDBRWBISB.GCSDBRWBJSB:nth-child(2)" , "Attachment");
         this.toTxb = new TextBox("#mailTo", "To");

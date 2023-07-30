@@ -5,8 +5,8 @@ import Button from "../elements/Button";
 
 class MailBoxUserMenu extends BaseForm {
 
-    constructor(locator,) {
-        super(locator, `Mail box User menu`);
+    constructor() {
+        super(`.GCSDBRWBNQ.menu`, `Mail box User menu`);
         this.LogOutBtn = new Button(".GCSDBRWBFR div svg", "Log Out");
     }
     

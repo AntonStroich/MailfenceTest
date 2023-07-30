@@ -5,7 +5,7 @@ import Button from "../elements/Button";
 class MailBoxHeader extends BaseForm  {
 
     constructor(locator) {
-        super(locator, `Mail Box header`);
+        super(`div#toolSelector`, `Mail Box header`);
         this.messagesBtn = new Button("div#nav-mail", "Messages");
         this.userBtn = new Button("div[class = 'GCSDBRWBNE user GCSDBRWBGE']", "User");
         this.documentsBtn = new Button("#nav-docs", "Documents");

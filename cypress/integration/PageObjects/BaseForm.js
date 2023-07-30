@@ -7,8 +7,12 @@ class BaseForm {
         
     }
 
+    getLocator() {
+        return this.locator;
+    }
+
     getForm() {
-        return cy.get(this.locator);
+        return cy.get(this.getLocator());
     }
 }
 

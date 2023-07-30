@@ -7,8 +7,12 @@ class BaseElement {
         this.name = name;
     }
 
+    getLocator() {
+        return this.locator;
+    }
+
     getElement() {
-        return cy.get(this.locator);
+        return cy.get(this.getLocator());
     }
 
     clickElement() {
