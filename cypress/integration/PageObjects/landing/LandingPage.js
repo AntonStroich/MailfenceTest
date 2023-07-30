@@ -5,8 +5,8 @@ import BaseForm from "../BaseForm";
 
 class LandingPage extends BaseForm {
 
-    constructor(locator) {
-        super(locator, `Landing Page`);
+    constructor() {
+        super(`header.container.limit.hero.mf`, `Landing Page`);
         this.url = (Cypress.env('url'));   
         this.mailBtn = new Button("#signin", "Mail"); 
     }
