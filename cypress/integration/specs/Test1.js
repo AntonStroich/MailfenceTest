@@ -11,9 +11,24 @@ import DocList from "../PageObjects/lists/DocList";
 import AddDocumentToEmailWindow from "../PageObjects/modal_windows/AddDocumentToEmailWindow";
 import ExistedEmailForm from "../PageObjects/messages_page/ExistedEmailForm";
 import DownloadDocumentFromEmailWindow from "../PageObjects/modal_windows/DownloadDocumentFromEmailWindow";
+import { ATTACHMENT_DDN_FROM_DOCUMENT_TOOL, ATTACHMENT_DDN_SAVE_IN_DOCUMENTS } from "../PageObjects/base_variables";
 
-const FROM_DOCUMENT_TOOL = "From document tool";
-const SAVE_IN_DOCUMENTS = "Save in Documents";
+
+
+const landingPage = new LandingPage();
+const loginToMailPage = new LoginToMailPage();
+const mailBoxHeader = new MailBoxHeader();
+const mailBoxUserMenu = new MailBoxUserMenu();
+const documentsNavBar = new DocumentsNavBar();
+const toolBar = new ToolBar();
+const newEmailForm = new NewEmailForm();
+const mailList = new MailList();
+const docList = new DocList();
+const addDocumentToEmailWindow = new AddDocumentToEmailWindow();
+const existedEmailForm = new ExistedEmailForm();
+const downloadDocumentFromEmailWindow = new DownloadDocumentFromEmailWindow();
+
+
 
 
 
@@ -37,19 +52,6 @@ describe("The first test run", function() {
         const filePath = this.data.filePath;
         const attachmentName = this.data.attachmentName;
         const attachmentExtension = this.data.attachmentExtension;
-        const landingPage = new LandingPage();
-        const loginToMailPage = new LoginToMailPage();
-        const mailBoxHeader = new MailBoxHeader();
-        const mailBoxUserMenu = new MailBoxUserMenu();
-        const documentsNavBar = new DocumentsNavBar();
-        const toolBar = new ToolBar();
-        const newEmailForm = new NewEmailForm();
-        const mailList = new MailList();
-        const docList = new DocList();
-        const addDocumentToEmailWindow = new AddDocumentToEmailWindow();
-        const existedEmailForm = new ExistedEmailForm();
-        const downloadDocumentFromEmailWindow = new DownloadDocumentFromEmailWindow();
-
 
         cy.log(`Step 1. Login to Mail.`);
         landingPage.openAndClickMailBtn();
@@ -58,9 +60,7 @@ describe("The first test run", function() {
         cy.log(`Step 2. Attach .txt file`);
         mailBoxHeader.clickDocumentsBtn();
         cy.readFile(`${filePath}\\${attachmentName}.${attachmentExtension}`).should("not.be.null");
-        cy.get("#new_doc input[type=file]", {timeout: 2000}).selectFile(`${filePath}\\${attachmentName}.${attachmentExtension}`, { action: "select", force: true });
-        cy.wait(2000); // fails without cy.wait(); the current solution needs to be replaced
-        toolBar.clickRefreshBtn();
+        cy.uploadNewDocumentOnDocumentPage(`${filePath}\\${attachmentName}.${attachmentExtension}`);
         docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
 
         cy.log(`Step 3. Send email with attached file to yourself`);
@@ -70,7 +70,7 @@ describe("The first test run", function() {
         newEmailForm.populateSubjectTxb(subject);
         newEmailForm.clickAttachmentsBtn();
         newEmailForm.getAttachmentDdn().should("be.visible");
-        newEmailForm.selectFromAttachmentDdnByText(FROM_DOCUMENT_TOOL);
+        newEmailForm.selectFromAttachmentDdnByText(ATTACHMENT_DDN_FROM_DOCUMENT_TOOL);
         addDocumentToEmailWindow.getForm().should("be.visible");
         docList.selectItemByText(attachmentName);
         addDocumentToEmailWindow.clickOkAndWait();
@@ -92,7 +92,7 @@ describe("The first test run", function() {
         cy.log(`Step 6. Save the attached file to documents by 'Сохранить в документах' button`);
         existedEmailForm.clickAttachmentLnkArrowLinkByIndex(0);
         existedEmailForm.getAttachmentDdn().should("be.visible");
-        existedEmailForm.selectFromAttachmentDdnByText(SAVE_IN_DOCUMENTS);
+        existedEmailForm.selectFromAttachmentDdnByText(ATTACHMENT_DDN_SAVE_IN_DOCUMENTS);
         downloadDocumentFromEmailWindow.getForm().should("be.visible");
         downloadDocumentFromEmailWindow.clickMyDocumentsBtn();
         downloadDocumentFromEmailWindow.clickOkAndWait();
