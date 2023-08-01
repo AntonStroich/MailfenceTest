@@ -2,6 +2,7 @@
 import BaseForm from "../BaseForm";
 import Button from "../elements/Button";
 import TextBox from "../elements/TextBox";
+import MailBoxHeader from "../mail_box/MailBoxHeader";
 
 class LoginToMailPage extends BaseForm {
 
@@ -27,12 +28,13 @@ class LoginToMailPage extends BaseForm {
         this.EnterBtn.clickElement();
     }
 
-    logInToMail(login, password, timeout=4000) {
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
+    logInToMail(login, password) {
+        const mailBoxHeader = new MailBoxHeader();
+
         this.populateEmailAddressTxb(login);
         this.populatePasswordTxb(password);
         this.clickEnterBtn();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
+        mailBoxHeader.getForm().should(`be.visible`, {timeout: 20000});
     }
 
 }
