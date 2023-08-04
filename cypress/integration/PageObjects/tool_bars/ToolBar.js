@@ -33,9 +33,7 @@ class ToolBar extends MailBoxMainArea  {
         this.deleteBtn.clickElement();
     }
 
-    deleteAll(timeout=1000) {
-        this.clickRefreshBtn();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
+    deleteAll() {
         this.clickSelectAllChb();
         this.clickDeleteBtn();
     }

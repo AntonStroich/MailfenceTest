@@ -11,12 +11,10 @@ class MessagesTabToolBarWithDeleteBtn extends MessagesToolBar {
         this.confirmDeletionWindow = new ConfirmDeletionWindow();
      }
 
-    deleteAll(timeout=1000) {
-        this.clickRefreshBtn();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
+    deleteAll() {
         this.clickSelectAllChb();
         this.clickDeleteBtn();
-        this.confirmDeletionWindow.clickYesAndWait();
+        this.confirmDeletionWindow.clickYesBtn();
     }
 }
 

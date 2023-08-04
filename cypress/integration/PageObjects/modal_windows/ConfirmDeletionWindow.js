@@ -15,12 +15,6 @@ class ConfirmDeletionWindow extends BaseForm {
         this.yesBtn.clickElement();
     } 
 
-    clickYesAndWait(timeout=1000) {
-        cy.log(`Clicking on ${this.yesBtn.name} from ${this.name}`);
-        this.clickYesBtn();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
-    }
-
 }
 
 export default ConfirmDeletionWindow;
