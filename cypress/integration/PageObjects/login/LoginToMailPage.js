@@ -30,11 +30,16 @@ class LoginToMailPage extends BaseForm {
 
     logInToMail(login, password) {
         const mailBoxHeader = new MailBoxHeader();
-
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`getMeetingsRequestsToAnswer`)) {
+                request.alias = 'login'
+            }
+          });
         this.populateEmailAddressTxb(login);
         this.populatePasswordTxb(password);
         this.clickEnterBtn();
-        mailBoxHeader.getForm().should(`be.visible`, {timeout: 20000});
+        cy.wait(`@login`, {timeout: 30000});
+        mailBoxHeader.getForm().should(`be.visible`, {timeout: 30000});
     }
 
 }

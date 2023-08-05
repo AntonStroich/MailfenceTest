@@ -8,7 +8,7 @@ import MessagesNavBar from "../integration/PageObjects/navigation_bars/MessagesN
 import DocumentsNavBar from "../integration/PageObjects/navigation_bars/DocumentsNavBar";
 import DocumentsToolBar  from "../integration/PageObjects/tool_bars/DocumentsToolBar";
 import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/DocumentsTabToolBarWithDeleteBtn";
-import { FILE_UPLOAD_ON_DOCUMENTS_PAGE_REQUEST} from "../integration/PageObjects/base_variables";
+import { FILE_UPLOAD_ON_DOCUMENTS_PAGE} from "../integration/PageObjects/base_variables";
 
 
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentExtension, attachmentText)=> { 
@@ -76,8 +76,6 @@ import { FILE_UPLOAD_ON_DOCUMENTS_PAGE_REQUEST} from "../integration/PageObjects
 
     landingPage.openAndClickMailBtn();
     loginToMailPage.logInToMail(login, password);
-    mailBoxHeader.clickMessagesBtn();
-    messagesNavBar.clickInboxBtn();
     messagesToolBar.deleteAllIfNotEmpty();
     messagesNavBar.clickSentBtn();
     messagesToolBar.deleteAllIfNotEmpty();
@@ -97,14 +95,10 @@ import { FILE_UPLOAD_ON_DOCUMENTS_PAGE_REQUEST} from "../integration/PageObjects
   })
 
 
-  Cypress.Commands.add("waitForRequestToComplete", (url)=> {
-    cy.intercept(url).as(`alias`);
-    cy.wait(`@alias`);
-  })
-
-  Cypress.Commands.add("uploadNewDocumentOnDocumentPage", (path, url =  FILE_UPLOAD_ON_DOCUMENTS_PAGE_REQUEST)=> {
+Cypress.Commands.add("uploadNewDocumentOnDocumentPage", (path, url =  FILE_UPLOAD_ON_DOCUMENTS_PAGE)=> {
+    cy.intercept(url).as(`uploadDocument`);
     cy.get("#new_doc input[type=file]", {timeout: 1000}).selectFile(path, { action: "select", force: true });
-    cy.waitForRequestToComplete(url);
+    cy.wait(`@uploadDocument`);
   })
 
   

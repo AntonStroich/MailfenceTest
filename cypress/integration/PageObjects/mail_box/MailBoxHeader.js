@@ -11,16 +11,26 @@ class MailBoxHeader extends BaseForm  {
         this.documentsBtn = new Button("#nav-docs", "Documents");
      }
 
-    clickMessagesBtn(timeout=1000) {
+    clickMessagesBtn() {
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`getRequestorAccount`)) {
+                request.alias = 'messagesLoading'
+            }
+          })
         cy.log(`Clicking on ${this.messagesBtn.name} from ${this.name}`);
         this.messagesBtn.clickElement();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
+        cy.wait('@messagesLoading');
      }
 
-    clickDocumentsBtn(timeout=1000) {
+    clickDocumentsBtn() {
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`getDocuments`)) {
+                request.alias = 'documentsLoading'
+            }
+          })
         cy.log(`Clicking on ${this.documentsBtn.name} from ${this.name}`);
         this.documentsBtn.clickElement();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
+        cy.wait('@documentsLoading');
     }
 
     clickUserBtn() {
