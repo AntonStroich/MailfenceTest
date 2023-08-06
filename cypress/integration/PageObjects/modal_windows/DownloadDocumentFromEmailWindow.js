@@ -15,12 +15,13 @@ class DownloadDocumentFromEmailWindow extends DocumentsWindow {
     clickMyDocumentsBtn() {
         cy.log(`Clicking ${this.myDocumentsBtn.name} from ${this.name}`);
         this.myDocumentsBtn.clickElement();
-        cy.wait(1000);
+        this.myDocumentsBtn.getElement().should(`be.visible`, {timeout: 20000});
     } 
 
     clickTrashBtn() {
         cy.log(`Clicking ${this.trashBtn.name} from ${this.name}`);
         this.trashBtn.clickElement();
+        this.trashBtn.getElement().should(`be.visible`, {timeout: 20000});
     }
 
     clickOkAndWait() {

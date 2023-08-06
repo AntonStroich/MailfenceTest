@@ -89,7 +89,7 @@ describe("The first test run", function() {
         existedEmailForm.clickAttachmentLnkArrowLinkByIndex(0);
         existedEmailForm.getAttachmentDdn().should("be.visible");
         existedEmailForm.selectSaveInDocumentsFromAttachmentDdnAndWait();
-        downloadDocumentFromEmailWindow.getForm().should("be.visible");
+        downloadDocumentFromEmailWindow.getForm().should(`be.visible`, {timeout: 10000});
         downloadDocumentFromEmailWindow.clickMyDocumentsBtn();
         downloadDocumentFromEmailWindow.clickOkAndWait();
 
