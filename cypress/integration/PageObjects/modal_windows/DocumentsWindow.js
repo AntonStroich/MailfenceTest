@@ -15,11 +15,6 @@ class DocumentsWindow extends BaseForm {
         this.okBtn.clickElement();
     } 
 
-    clickOkAndWait(timeout=1000) {
-        cy.log(`Clicking on ${this.okBtn.name} from ${this.name}`);
-        this.clickOkBtn();
-        cy.wait(timeout);
-    }
 
     clickCancelBtn() {
         cy.log(`Clicking on ${this.cancelBtn.name} from ${this.name}`);

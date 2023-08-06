@@ -12,18 +12,26 @@ class DownloadDocumentFromEmailWindow extends DocumentsWindow {
         this.trashBtn = new Button("#doc_tree_trash" , "Trash");
     }
     
-    clickMyDocumentsBtn(timeout=1000) {
+    clickMyDocumentsBtn() {
         cy.log(`Clicking ${this.myDocumentsBtn.name} from ${this.name}`);
         this.myDocumentsBtn.clickElement();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
+        cy.wait(1000);
     } 
 
-    clickTrashBtn(timeout=1000) {
+    clickTrashBtn() {
         cy.log(`Clicking ${this.trashBtn.name} from ${this.name}`);
         this.trashBtn.clickElement();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
     }
-    
+
+    clickOkAndWait() {
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`saveAttachmentInDocuments`)) {
+                request.alias = 'saveAttachmentInDocuments';
+            }
+          });
+       this.clickOkBtn();
+       cy.wait(`@saveAttachmentInDocuments`, {timeout: 30000});
+    }    
 }
 
 export default DownloadDocumentFromEmailWindow;
