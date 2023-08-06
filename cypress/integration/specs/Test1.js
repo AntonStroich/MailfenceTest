@@ -75,11 +75,9 @@ describe("The first test run", function() {
         docList.selectItemByText(attachmentName);
         addDocumentToEmailWindow.clickOkAndWait();
         newEmailForm.getAttachmentLnkByIndex(0).should("contains.text", `${attachmentName}.${attachmentExtension}`);
-        newEmailForm.clickSendBtn();
+        newEmailForm.sendEmailAndWait();
 
         cy.log(`Step 4. Check that email recieved`);
-        newEmailForm.clickSendBtn();
-        toolBar.getForm().should("be.visible");
         cy.wait(5000);
         toolBar.clickRefreshBtn();
         mailList.getItemTitleByIndex(0).should("have.attr", "title", `${subject}`);

@@ -34,6 +34,16 @@ class NewEmailForm extends EmailForm  {
         this.subjectTxb.clearAndType(subjectEmail);
     }
 
+    sendEmailAndWait() {
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`putMessage`)) {
+                request.alias = 'sendingEmail';
+            }
+          });
+        this.clickSendBtn();
+        cy.wait(`@sendingEmail`);
+    }
+
 }
 
 export default NewEmailForm;

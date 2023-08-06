@@ -32,7 +32,7 @@ class LoginToMailPage extends BaseForm {
         const mailBoxHeader = new MailBoxHeader();
         cy.intercept(`POST`, `/gwt`, (request) => {
             if (request.body.includes(`getMeetingsRequestsToAnswer`)) {
-                request.alias = 'login'
+                request.alias = 'login';
             }
           });
         this.populateEmailAddressTxb(login);
