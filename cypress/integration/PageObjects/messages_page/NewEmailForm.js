@@ -24,6 +24,16 @@ class NewEmailForm extends EmailForm  {
         this.attachmentBtn.clickElement();
     }
 
+    selectFromDocumentToolFromAttachmentDdnAndWait() {
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`getDocuments`)) {
+                request.alias = 'getDocuments';
+            }
+          });
+        this.selectFromAttachmentDdnByText(`From document tool`);
+        cy.wait(`@getDocuments`)
+    }
+
     populateToTxb(email) {
         cy.log(`Filling the ${this.toTxb.name} from ${this.name}`);
         this.toTxb.clearAndType(`${email}{enter}`);

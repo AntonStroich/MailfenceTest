@@ -11,8 +11,6 @@ import DocList from "../PageObjects/lists/DocList";
 import AddDocumentToEmailWindow from "../PageObjects/modal_windows/AddDocumentToEmailWindow";
 import ExistedEmailForm from "../PageObjects/messages_page/ExistedEmailForm";
 import DownloadDocumentFromEmailWindow from "../PageObjects/modal_windows/DownloadDocumentFromEmailWindow";
-import { ATTACHMENT_DDN_FROM_DOCUMENT_TOOL, ATTACHMENT_DDN_SAVE_IN_DOCUMENTS } from "../PageObjects/base_variables";
-
 
 
 const landingPage = new LandingPage();
@@ -70,7 +68,7 @@ describe("The first test run", function() {
         newEmailForm.populateSubjectTxb(subject);
         newEmailForm.clickAttachmentsBtn();
         newEmailForm.getAttachmentDdn().should("be.visible");
-        newEmailForm.selectFromAttachmentDdnByText(ATTACHMENT_DDN_FROM_DOCUMENT_TOOL);
+        newEmailForm.selectFromDocumentToolFromAttachmentDdnAndWait();
         addDocumentToEmailWindow.getForm().should("be.visible");
         docList.selectItemByText(attachmentName);
         addDocumentToEmailWindow.clickOkAndWait();
@@ -90,7 +88,7 @@ describe("The first test run", function() {
         cy.log(`Step 6. Save the attached file to documents by 'Сохранить в документах' button`);
         existedEmailForm.clickAttachmentLnkArrowLinkByIndex(0);
         existedEmailForm.getAttachmentDdn().should("be.visible");
-        existedEmailForm.selectFromAttachmentDdnByText(ATTACHMENT_DDN_SAVE_IN_DOCUMENTS);
+        existedEmailForm.selectSaveInDocumentsFromAttachmentDdnAndWait();
         downloadDocumentFromEmailWindow.getForm().should("be.visible");
         downloadDocumentFromEmailWindow.clickMyDocumentsBtn();
         downloadDocumentFromEmailWindow.clickOkAndWait();

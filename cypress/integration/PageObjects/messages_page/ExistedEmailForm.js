@@ -28,6 +28,16 @@ class ExistedEmailForm extends EmailForm  {
         cy.log(`Clicking ${this.attachmentArrowLink} for the attachment #${index + 1}`);
         this.getAttachmentLnkArrowLinkByIndex(index).click({force: true});
     }
+
+    selectSaveInDocumentsFromAttachmentDdnAndWait() {
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`getDirectoriesTree`)) {
+                request.alias = 'getDirectoriesTree';
+            }
+          });
+        this.selectFromAttachmentDdnByText(`Save in Documents`);
+        cy.wait(`@getDirectoriesTree`)
+    }
 }
 
 export default ExistedEmailForm;

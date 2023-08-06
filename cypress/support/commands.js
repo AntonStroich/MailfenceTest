@@ -8,7 +8,6 @@ import MessagesNavBar from "../integration/PageObjects/navigation_bars/MessagesN
 import DocumentsNavBar from "../integration/PageObjects/navigation_bars/DocumentsNavBar";
 import DocumentsToolBar  from "../integration/PageObjects/tool_bars/DocumentsToolBar";
 import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/DocumentsTabToolBarWithDeleteBtn";
-import { FILE_UPLOAD_ON_DOCUMENTS_PAGE} from "../integration/PageObjects/base_variables";
 
 
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentExtension, attachmentText)=> { 
@@ -95,9 +94,10 @@ import { FILE_UPLOAD_ON_DOCUMENTS_PAGE} from "../integration/PageObjects/base_va
   })
 
 
-Cypress.Commands.add("uploadNewDocumentOnDocumentPage", (path, url =  FILE_UPLOAD_ON_DOCUMENTS_PAGE)=> {
+Cypress.Commands.add("uploadNewDocumentOnDocumentPage", (path, url) => {
+    url = `/sw?type=doc&state=26&gwt=1&oidDir=439327776`;
     cy.intercept(url).as(`uploadDocument`);
-    cy.get("#new_doc input[type=file]", {timeout: 1000}).selectFile(path, { action: "select", force: true });
+    cy.get("#new_doc input[type=file]", {timeout: 10000}).selectFile(path, { action: "select", force: true });
     cy.wait(`@uploadDocument`);
   })
 
