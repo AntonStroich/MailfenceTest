@@ -24,7 +24,6 @@ class EmailForm extends MailBoxMainArea  {
     }
 
     selectFromAttachmentDdnByText(text) {
-        cy.wait(1000); // fails without cy.wait(); the current solution needs to be replaced
         cy.log(`Selecting a value from the ${this.attachmentDdn.name}`);
         this.attachmentDdn.selectOptionByText(text);
     }
