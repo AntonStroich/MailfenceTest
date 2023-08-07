@@ -14,7 +14,7 @@ class MessagesTabToolBarWithDeleteBtn extends MessagesToolBar {
     deleteAll() {
         this.clickSelectAllChb();
         this.clickDeleteBtn();
-        this.confirmDeletionWindow.clickYesBtn();
+        this.confirmDeletionWindow.clickYesAndWait();
     }
 }
 

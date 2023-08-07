@@ -15,6 +15,17 @@ class ConfirmDeletionWindow extends BaseForm {
         this.yesBtn.clickElement();
     } 
 
+    clickYesAndWait() {
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`delete`)) {
+                request.alias = 'delete';
+            }
+          });
+        cy.log(`Clicking on ${this.yesBtn.name} from ${this.name}`);
+        this.yesBtn.clickElement();
+        cy.wait(`@delete`, {timeout: 30000});
+    } 
+
 }
 
 export default ConfirmDeletionWindow;

@@ -14,7 +14,7 @@ class DocumentsTabToolBarWithDeleteBtn extends DocumentsToolBar {
     deleteAll() {
         this.clickSelectAllChb();
         this.clickDeleteBtn();
-        this.confirmDeletionWindow.clickYesBtn();
+        this.confirmDeletionWindow.clickYesAndWait();
     }
 }
 
