@@ -5,6 +5,7 @@ import MailBoxHeader from "../PageObjects/mail_box/MailBoxHeader";
 import MailBoxUserMenu from "../PageObjects/mail_box/MailBoxUserMenu";
 import ToolBar from "../PageObjects/tool_bars/ToolBar";
 import NewEmailForm from "../PageObjects/messages_page/NewEmailForm";
+import MessagesNavBar from "../PageObjects/navigation_bars/MessagesNavBar";
 import DocumentsNavBar from "../PageObjects/navigation_bars/DocumentsNavBar";
 import MailList from "../PageObjects/lists/MailList";
 import DocList from "../PageObjects/lists/DocList";
@@ -17,6 +18,7 @@ const landingPage = new LandingPage();
 const loginToMailPage = new LoginToMailPage();
 const mailBoxHeader = new MailBoxHeader();
 const mailBoxUserMenu = new MailBoxUserMenu();
+const messagesNavBar = new MessagesNavBar();
 const documentsNavBar = new DocumentsNavBar();
 const toolBar = new ToolBar();
 const newEmailForm = new NewEmailForm();
@@ -74,8 +76,9 @@ describe("The first test run", function() {
         addDocumentToEmailWindow.clickOkAndWait();
         newEmailForm.getAttachmentLnkByIndex(0).should("contains.text", `${attachmentName}.${attachmentExtension}`);
         newEmailForm.sendEmailAndWait();
-
+        
         cy.log(`Step 4. Check that email recieved`);
+        cy.reload();
         cy.wait(5000);
         toolBar.clickRefreshBtn();
         mailList.getItemTitleByIndex(0).should("have.attr", "title", `${subject}`);
@@ -100,13 +103,13 @@ describe("The first test run", function() {
         docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
         docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
-        // cy.log(`Step 8. Move file from "Мои документы" folder to "Trash" folder by Drag'n'drop action`);
-        // cy.dragAndDrop(`#doc_list .GCSDBRWBPJB`, 1, documentsNavBar.trashBtn.locator);
-        // docList.getItemTitle().should("have.length", 1);
-        // docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
-        // documentsNavBar.clickTrashBtn();
-        // docList.getItemTitle().should("have.length", 1);
-        // docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
+        cy.log(`Step 8. Move file from "Мои документы" folder to "Trash" folder by Drag'n'drop action`);
+        cy.dragAndDrop(`#doc_list .GCSDBRWBPJB`, 1, documentsNavBar.trashBtn.locator);
+        docList.getItemTitle().should("have.length", 1);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
+        documentsNavBar.clickTrashBtn();
+        docList.getItemTitle().should("have.length", 1);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();
