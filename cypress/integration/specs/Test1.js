@@ -78,7 +78,7 @@ describe("The first test run", function() {
         newEmailForm.sendEmailAndWait();
         
         cy.log(`Step 4. Check that email recieved`);
-        cy.reload();
+        cy.reload(); /* The step 8 will fail without reloading() */
         cy.wait(5000);
         toolBar.clickRefreshBtn();
         mailList.getItemTitleByIndex(0).should("have.attr", "title", `${subject}`);
@@ -104,7 +104,7 @@ describe("The first test run", function() {
         docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
         cy.log(`Step 8. Move file from "Мои документы" folder to "Trash" folder by Drag'n'drop action`);
-        cy.dragAndDrop(`#doc_list .GCSDBRWBPJB`, 1, documentsNavBar.trashBtn.locator);
+        cy.dragAndDrop(`${docList.locator} ${docList.itemTitle.locator} `, 1, documentsNavBar.trashBtn.locator);
         docList.getItemTitle().should("have.length", 1);
         docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
         documentsNavBar.clickTrashBtn();
