@@ -74,20 +74,37 @@ import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_ba
     const documentsTabToolBarWithDeleteBtn = new DocumentsTabToolBarWithDeleteBtn();
 
     landingPage.openAndClickMailBtn();
+    cy.intercept(`POST`, `/gwt`, (request) => {
+        if (request.body.includes(`getFolderMessages`)) {
+            request.alias = 'getFolderMessages';
+        }
+      });
     loginToMailPage.logInToMail(login, password);
+    cy.wait(`@getFolderMessages`, {timeout: 30000});
     messagesToolBar.deleteAllIfNotEmpty();
     messagesNavBar.clickSentBtn();
+    cy.wait(`@getFolderMessages`, {timeout: 30000});
     messagesToolBar.deleteAllIfNotEmpty();
     messagesNavBar.clickDraftsBtn();
+    cy.wait(`@getFolderMessages`, {timeout: 30000});
     messagesToolBar.deleteAllIfNotEmpty();
     messagesNavBar.clickSpamBtn();
+    cy.wait(`@getFolderMessages`, {timeout: 30000});
     messagesTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
     messagesNavBar.clickTrashBtn();
+    cy.wait(`@getFolderMessages`, {timeout: 30000});
     messagesTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
     mailBoxHeader.clickDocumentsBtn();
+    cy.intercept(`POST`, `/gwt`, (request) => {
+        if (request.body.includes(`getDocuments`)) {
+            request.alias = 'getDocuments';
+        }
+      });
     documentsNavBar.clickMyDocumentsBtn();
+    cy.wait(`@getDocuments`, {timeout: 30000});
     documentsToolBar.deleteAllIfNotEmpty();
     documentsNavBar.clickTrashBtn();
+    cy.wait(`@getDocuments`, {timeout: 30000});
     documentsTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();

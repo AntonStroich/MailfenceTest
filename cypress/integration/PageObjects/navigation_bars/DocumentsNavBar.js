@@ -13,13 +13,11 @@ class DocumentsNavBar extends MailBoxMainArea {
      clickMyDocumentsBtn(timeout=1000) {
         cy.log(`Clicking ${this.myDocumentsBtn.name} from ${this.name}`);
         this.myDocumentsBtn.clickElement();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
     } 
 
     clickTrashBtn(timeout=1000) {
         cy.log(`Clicking ${this.trashBtn.name} from ${this.name}`);
         this.trashBtn.clickElement();
-        cy.wait(timeout); // fails without cy.wait(); the current solution needs to be replaced
     }
 
 }

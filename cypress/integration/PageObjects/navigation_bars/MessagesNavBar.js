@@ -17,35 +17,30 @@ class MessagesNavBar extends MailBoxMainArea {
         cy.log(`Clicking ${this.inboxBtn.name} from ${this.name}`);
         this.inboxBtn.getElement().should(`exist`, {timeout: 30000});
         this.inboxBtn.clickElement();
-        cy.wait(1000);
     }
 
     clickSentBtn() {
         cy.log(`Clicking ${this.sentBtn.name} from ${this.name}`);
         this.sentBtn.getElement().should(`exist`, {timeout: 30000});
         this.sentBtn.clickElement();
-        cy.wait(1000);
     }
     
     clickTrashBtn() {
         cy.log(`Clicking ${this.trashBtn.name} from ${this.name}`);
         this.trashBtn.getElement().should(`exist`, {timeout: 30000});
         this.trashBtn.clickElement();
-        cy.wait(1000);
     }
 
     clickDraftsBtn() {
         cy.log(`Clicking ${this.draftsBtn.name} from ${this.name}`);
         this.draftsBtn.getElement().should(`exist`, {timeout: 30000});
         this.draftsBtn.clickElement();
-        cy.wait(1000);
     }
 
     clickSpamBtn() {
         cy.log(`Clicking ${this.spamBtn.name} from ${this.name}`);
         this.spamBtn.getElement().should("exist", "tbBtnActive", {timeout: 30000});
         this.spamBtn.clickElement();
-        cy.wait(1000);
     }
 }
 
