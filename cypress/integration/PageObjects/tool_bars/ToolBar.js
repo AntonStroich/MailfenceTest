@@ -35,6 +35,7 @@ class ToolBar extends MailBoxMainArea  {
 
     deleteAll() {
         this.clickSelectAllChb();
+        this.deleteBtn.getElement().should("not.have.class", " tbBtnDisabled", {timeout: 30000});
         this.clickDeleteBtn();
     }
 }
