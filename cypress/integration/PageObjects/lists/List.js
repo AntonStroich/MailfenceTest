@@ -65,23 +65,21 @@ class List extends BaseForm {
 
     getItemCount() {
         const mailBoxMainArea = new MailBoxMainArea();
-        let itemCount;
-
-         cy.get(`${mailBoxMainArea.locator}`).then((element)=> {
-            cy.log(`${mailBoxMainArea.locator}`);
-            cy.log(`${this.locator}`);
-            cy.log(`${this.itemTitle.getLocator()}`);
-           let count = element.find(`${this.locator} ${this.itemTitle.getLocator()}`).length;
-           if (count > 0) {
-               cy.log(`itemCount is ${itemCount}`);
-               itemCount = count;
-            } else {
-                cy.log(`List item is empty. itemCount is ${itemCount}`);
-            }
-          }); 
-        return itemCount;
-    }
+      
+        cy.get(`${mailBoxMainArea.locator}`).then((element) => {
+          const count = element.find(`${this.locator} ${this.itemTitle.getLocator()}`).length;
+          cy.log(`${count}`);
+          if (count > 0) {
+            cy.log(`itemCount is ${count}`);
+            cy.wrap(count).as('count');
+          } else {
+            cy.log(`List item is empty.`);
+            cy.wrap(0).as('count');
+          }
+        })
+        return cy.get('@count');
+      }
 
 }
-
+    
 export default List;

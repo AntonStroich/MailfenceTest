@@ -115,4 +115,7 @@ Cypress.Commands.add("uploadNewDocumentOnDocumentPage", (path, url) => {
     cy.wait(`@uploadDocument`);
   })
 
+  Cypress.Commands.add('setCurrentCount', (currentCount) => {
+    cy.wrap(currentCount).as('currentCount');
+  });
   

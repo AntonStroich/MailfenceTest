@@ -34,8 +34,14 @@ class ToolBar extends MailBoxMainArea  {
     }
     
     clickRefreshBtn() {
+        cy.intercept(`POST`, `/gwt`, (request) => {
+            if (request.body.includes(`getFolderMessages`)) {
+                request.alias = 'getFolderMessages';
+            }
+          });
         cy.log(`Clicking on ${this.refreshBtn.name} from ${this.name}`);
         this.refreshBtn.clickElement();
+        cy.wait(`@getFolderMessages`, {timeout: 30000});
     }
 
     clickToTrashBtn() {

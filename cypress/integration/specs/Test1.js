@@ -4,8 +4,7 @@ import LoginToMailPage from "../PageObjects/login/LoginToMailPage";
 import MailBoxHeader from "../PageObjects/mail_box/MailBoxHeader";
 import MailBoxUserMenu from "../PageObjects/mail_box/MailBoxUserMenu";
 import ToolBar from "../PageObjects/tool_bars/ToolBar";
-import NewEmailForm from "../PageObjects/messages_page/NewEmailForm";
-import MessagesNavBar from "../PageObjects/navigation_bars/MessagesNavBar";
+import NewEmailForm from "../PageObjects/messages_page/NewEmailForm";;
 import DocumentsNavBar from "../PageObjects/navigation_bars/DocumentsNavBar";
 import MailList from "../PageObjects/lists/MailList";
 import DocList from "../PageObjects/lists/DocList";
@@ -18,7 +17,6 @@ const landingPage = new LandingPage();
 const loginToMailPage = new LoginToMailPage();
 const mailBoxHeader = new MailBoxHeader();
 const mailBoxUserMenu = new MailBoxUserMenu();
-const messagesNavBar = new MessagesNavBar();
 const documentsNavBar = new DocumentsNavBar();
 const toolBar = new ToolBar();
 const newEmailForm = new NewEmailForm();
@@ -27,9 +25,6 @@ const docList = new DocList();
 const addDocumentToEmailWindow = new AddDocumentToEmailWindow();
 const existedEmailForm = new ExistedEmailForm();
 const downloadDocumentFromEmailWindow = new DownloadDocumentFromEmailWindow();
-
-
-
 
 
 describe("The first test run", function() { 
@@ -61,57 +56,59 @@ describe("The first test run", function() {
         mailBoxHeader.clickDocumentsBtn();
         cy.readFile(`${filePath}\\${attachmentName}.${attachmentExtension}`).should("not.be.null");
         cy.uploadNewDocumentOnDocumentPage(`${filePath}\\${attachmentName}.${attachmentExtension}`);
-        docList.getItemCount();
         docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
 
         cy.log(`Step 3. Send email with attached file to yourself`);
         mailBoxHeader.clickMessagesBtn();
-        mailList.getItemCount();
-    //     toolBar.clickNewBtn();
-    //     newEmailForm.populateToTxb(login);
-    //     newEmailForm.populateSubjectTxb(subject);
-    //     newEmailForm.clickAttachmentsBtn();
-    //     newEmailForm.getAttachmentDdn().should("be.visible");
-    //     newEmailForm.selectFromDocumentToolFromAttachmentDdnAndWait();
-    //     addDocumentToEmailWindow.getForm().should("be.visible");
-    //     docList.selectItemByText(attachmentName);
-    //     addDocumentToEmailWindow.clickOkAndWait();
-    //     newEmailForm.getAttachmentLnkByIndex(0).should("contains.text", `${attachmentName}.${attachmentExtension}`);
-    //     newEmailForm.sendEmailAndWait();
+        mailList.getItemCount().then(currentCount => {
+            cy.setCurrentCount(currentCount);
+          });
+        toolBar.clickNewBtn();
+        newEmailForm.populateToTxb(login);
+        newEmailForm.populateSubjectTxb(subject);
+        newEmailForm.clickAttachmentsBtn();
+        newEmailForm.getAttachmentDdn().should("be.visible");
+        newEmailForm.selectFromDocumentToolFromAttachmentDdnAndWait();
+        addDocumentToEmailWindow.getForm().should("be.visible");
+        docList.selectItemByText(attachmentName);
+        addDocumentToEmailWindow.clickOkAndWait();
+        newEmailForm.getAttachmentLnkByIndex(0).should("contains.text", `${attachmentName}.${attachmentExtension}`);
+        newEmailForm.sendEmailAndWait();
         
-    //     cy.log(`Step 4. Check that email recieved`);
-    //     cy.reload(); /* The step 8 will fail without reloading() */
-    //     //cy.wait(5000);
-    //    // toolBar.clickRefreshBtn();
-    //     mailList.getItemTitleByIndex(0).should("have.attr", "title", `${subject}`);
+        cy.log(`Step 4. Check that email recieved`);
+        cy.reload(); /* Step 8 will be failed with TypeError: Cannot read properties of undefined without page reloading */
+        cy.get('@currentCount').then(currentCount => {
+          mailList.reloadPageTillItemCountInMailListIncrease(currentCount);
+        });
+        mailList.getItemTitleByIndex(0).should("have.attr", "title", `${subject}`);
+        
+        cy.log(`Step 5. Open recieved email`);
+        mailList.selectItemByIndex(0);
+        existedEmailForm.getForm().should("be.visible");
+        existedEmailForm.getSubjectLbl().should("have.text", `${subject}`);
 
-    //     cy.log(`Step 5. Open recieved email`);
-    //     mailList.selectItemByIndex(0);
-    //     existedEmailForm.getForm().should("be.visible");
-    //     existedEmailForm.getSubjectLbl().should("have.text", `${subject}`);
+        cy.log(`Step 6. Save the attached file to documents by 'Сохранить в документах' button`);
+        existedEmailForm.clickAttachmentLnkArrowLinkByIndex(0);
+        existedEmailForm.getAttachmentDdn().should("be.visible");
+        existedEmailForm.selectSaveInDocumentsFromAttachmentDdnAndWait();
+        downloadDocumentFromEmailWindow.getForm().should(`be.visible`, {timeout: 20000});
+        downloadDocumentFromEmailWindow.clickMyDocumentsBtn();
+        downloadDocumentFromEmailWindow.okBtn.getElement().should(`be.visible`, {timeout: 20000});
+        downloadDocumentFromEmailWindow.clickOkAndWait();
 
-    //     cy.log(`Step 6. Save the attached file to documents by 'Сохранить в документах' button`);
-    //     existedEmailForm.clickAttachmentLnkArrowLinkByIndex(0);
-    //     existedEmailForm.getAttachmentDdn().should("be.visible");
-    //     existedEmailForm.selectSaveInDocumentsFromAttachmentDdnAndWait();
-    //     downloadDocumentFromEmailWindow.getForm().should(`be.visible`, {timeout: 20000});
-    //     downloadDocumentFromEmailWindow.clickMyDocumentsBtn();
-    //     downloadDocumentFromEmailWindow.okBtn.getElement().should(`be.visible`, {timeout: 20000});
-    //     downloadDocumentFromEmailWindow.clickOkAndWait();
+        cy.log(`Step 7. Open documents area`);
+        mailBoxHeader.clickDocumentsBtn();
+        docList.getItemTitle().should("have.length", 2);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
+        docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
-    //     cy.log(`Step 7. Open documents area`);
-    //     mailBoxHeader.clickDocumentsBtn();
-    //     docList.getItemTitle().should("have.length", 2);
-    //     docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
-    //     docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
-
-    //     cy.log(`Step 8. Move file from "Мои документы" folder to "Trash" folder by Drag'n'drop action`);
-    //     cy.dragAndDrop(`${docList.locator} ${docList.itemTitle.locator} `, 1, documentsNavBar.trashBtn.locator);
-    //     docList.getItemTitle().should("have.length", 1);
-    //     docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
-    //     documentsNavBar.clickTrashBtn();
-    //     docList.getItemTitle().should("have.length", 1);
-    //     docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
+        cy.log(`Step 8. Move file from "Мои документы" folder to "Trash" folder by Drag'n'drop action`);
+        cy.dragAndDrop(`${docList.locator} ${docList.itemTitle.locator} `, 1, documentsNavBar.trashBtn.locator);
+        docList.getItemTitle().should("have.length", 1);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
+        documentsNavBar.clickTrashBtn();
+        docList.getItemTitle().should("have.length", 1);
+        docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
         cy.log(`Log out`)
         mailBoxHeader.clickUserBtn();
