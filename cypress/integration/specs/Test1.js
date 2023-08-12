@@ -76,7 +76,7 @@ describe("The first test run", function() {
         newEmailForm.sendEmailAndWait();
         
         cy.log(`Step 4. Check that email recieved`);
-        cy.reload(); /* Step 8 will be failed with TypeError: Cannot read properties of undefined without page reloading */
+        cy.reloadMessagesPage(); /* Step 8 will be failed with TypeError: Cannot read properties of undefined without page reloading */
         cy.get('@currentCount').then(currentCount => {
           mailList.reloadPageTillItemCountInMailListIncrease(currentCount);
         });

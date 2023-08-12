@@ -66,7 +66,7 @@ class List extends BaseForm {
     getItemCount() {
         const mailBoxMainArea = new MailBoxMainArea();
       
-        cy.get(`${mailBoxMainArea.locator}`).then((element) => {
+        cy.get(`${mailBoxMainArea.locator}`, {timeout: 30000}).then((element) => {
           const count = element.find(`${this.locator} ${this.itemTitle.getLocator()}`).length;
           cy.log(`${count}`);
           if (count > 0) {

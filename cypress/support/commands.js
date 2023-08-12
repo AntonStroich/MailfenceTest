@@ -118,4 +118,15 @@ Cypress.Commands.add("uploadNewDocumentOnDocumentPage", (path, url) => {
   Cypress.Commands.add('setCurrentCount', (currentCount) => {
     cy.wrap(currentCount).as('currentCount');
   });
+
+  Cypress.Commands.add(`reloadMessagesPage`, () => {
+    const mailBoxHeader = new MailBoxHeader();
+    cy.intercept(`POST`, `/gwt`, (request) => {
+      if (request.body.includes(`getMeetingsRequestsToAnswer`)) {
+          request.alias = 'login';
+      }
+    });
+    cy.reload();
+    mailBoxHeader.getForm().should(`be.visible`, {timeout: 30000});
+  });
   
