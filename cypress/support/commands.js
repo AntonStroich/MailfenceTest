@@ -2,12 +2,10 @@ import LandingPage from "../integration/PageObjects/landing/LandingPage";
 import LoginToMailPage from "../integration/PageObjects/login/LoginToMailPage";
 import MailBoxHeader from "../integration/PageObjects/mail_box/MailBoxHeader";
 import MailBoxUserMenu from "../integration/PageObjects/mail_box/MailBoxUserMenu";
-import MessagesToolBar from "../integration/PageObjects/tool_bars/MessagesToolBar";
-import MessagesTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/MessagesTabToolBarWithDeleteBtn";
 import MessagesNavBar from "../integration/PageObjects/navigation_bars/MessagesNavBar";
 import DocumentsNavBar from "../integration/PageObjects/navigation_bars/DocumentsNavBar";
-import DocumentsToolBar  from "../integration/PageObjects/tool_bars/DocumentsToolBar";
-import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_bars/DocumentsTabToolBarWithDeleteBtn";
+import MailList from "../integration/PageObjects/lists/MailList";
+import DocList from "../integration/PageObjects/lists/DocList";
 
 
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentExtension, attachmentText)=> { 
@@ -67,11 +65,10 @@ import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_ba
     const mailBoxHeader = new MailBoxHeader();
     const mailBoxUserMenu = new MailBoxUserMenu();
     const messagesNavBar = new MessagesNavBar();
-    const messagesToolBar = new MessagesToolBar();
-    const messagesTabToolBarWithDeleteBtn = new MessagesTabToolBarWithDeleteBtn();
     const documentsNavBar = new DocumentsNavBar();
-    const documentsToolBar = new DocumentsToolBar();
-    const documentsTabToolBarWithDeleteBtn = new DocumentsTabToolBarWithDeleteBtn();
+    const mailList = new MailList();
+    const docList = new DocList();
+  
 
     landingPage.openAndClickMailBtn();
     cy.intercept(`POST`, `/gwt`, (request) => {
@@ -81,19 +78,19 @@ import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_ba
       });
     loginToMailPage.logInToMail(login, password);
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    messagesToolBar.deleteAllIfNotEmpty();
+    mailList.moveToTrashAllIfNotEmpty();
     messagesNavBar.clickSentBtn();
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    messagesToolBar.deleteAllIfNotEmpty();
+    mailList.moveToTrashAllIfNotEmpty();
     messagesNavBar.clickDraftsBtn();
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    messagesToolBar.deleteAllIfNotEmpty();
+    mailList.moveToTrashAllIfNotEmpty();
     messagesNavBar.clickSpamBtn();
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    messagesTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
+    mailList.deleteAllIfNotEmpty();
     messagesNavBar.clickTrashBtn();
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    messagesTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
+    mailList.deleteAllIfNotEmpty();
     mailBoxHeader.clickDocumentsBtn();
     cy.intercept(`POST`, `/gwt`, (request) => {
         if (request.body.includes(`getDocuments`)) {
@@ -102,10 +99,10 @@ import DocumentsTabToolBarWithDeleteBtn from "../integration/PageObjects/tool_ba
       });
     documentsNavBar.clickMyDocumentsBtn();
     cy.wait(`@getDocuments`, {timeout: 30000});
-    documentsToolBar.deleteAllIfNotEmpty();
+    docList.moveToTrashAllIfNotEmpty();
     documentsNavBar.clickTrashBtn();
     cy.wait(`@getDocuments`, {timeout: 30000});
-    documentsTabToolBarWithDeleteBtn.deleteAllIfNotEmpty();
+    docList.deleteAllIfNotEmpty();
     mailBoxHeader.clickUserBtn();
     mailBoxUserMenu.clickLogOutBtn();
   })

@@ -1,6 +1,8 @@
 ///<reference types = 'Cypress' />
 import BaseForm from "../BaseForm";
 import Label from "../elements/Label";
+import MailBoxMainArea from "../mail_box/MailBoxMainArea";
+import ToolBar from "../tool_bars/ToolBar";
 
 class List extends BaseForm {
 
@@ -35,6 +37,49 @@ class List extends BaseForm {
     selectItemByIndex(index) {
         cy.log(`Selecting an item by ${index}`);
         this.getItemTitleByIndex(index).click();
+    }
+
+    moveToTrashAllIfNotEmpty(){ 
+        const mailBoxMainArea = new MailBoxMainArea();
+        const tooBar = new ToolBar();
+
+        cy.get(`${mailBoxMainArea.locator}`).then((element)=> {
+          if (element.find(`${this.locator}`).length > 0) {
+            tooBar.selectAllAndMoveToTrash();
+           }
+           cy.log(`the tab is empty`);
+         });  
+      }
+
+    deleteAllIfNotEmpty(){ 
+        const mailBoxMainArea = new MailBoxMainArea();
+        const tooBar = new ToolBar();
+
+        cy.get(`${mailBoxMainArea.locator}`).then((element)=> {
+          if (element.find(`${this.locator}`).length > 0) {
+            tooBar.selectAllAndDelete();
+           }
+           cy.log(`the tab is empty`);
+         });  
+      }
+
+    getItemCount() {
+        const mailBoxMainArea = new MailBoxMainArea();
+        let itemCount;
+
+         cy.get(`${mailBoxMainArea.locator}`).then((element)=> {
+            cy.log(`${mailBoxMainArea.locator}`);
+            cy.log(`${this.locator}`);
+            cy.log(`${this.itemTitle.getLocator()}`);
+           let count = element.find(`${this.locator} ${this.itemTitle.getLocator()}`).length;
+           if (count > 0) {
+               cy.log(`itemCount is ${itemCount}`);
+               itemCount = count;
+            } else {
+                cy.log(`List item is empty. itemCount is ${itemCount}`);
+            }
+          }); 
+        return itemCount;
     }
 
 }

@@ -47,11 +47,11 @@ class NewEmailForm extends EmailForm  {
     sendEmailAndWait() {
         cy.intercept(`POST`, `/gwt`, (request) => {
             if (request.body.includes(`putMessage`)) {
-                request.alias = 'sendingEmail';
+                request.alias = 'putMessage';
             }
           });
         this.clickSendBtn();
-        cy.wait(`@sendingEmail`);
+        cy.wait(`@putMessage`, {timeout: 30000});
     }
 
 }
