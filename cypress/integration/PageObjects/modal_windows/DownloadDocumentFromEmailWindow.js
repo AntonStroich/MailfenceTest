@@ -1,7 +1,6 @@
 ///<reference types = 'Cypress' />
 import DocumentsWindow from "./DocumentsWindow";
 import Button from "../elements/Button";
-import DocumentsNavBar from "../navigation_bars/DocumentsNavBar";
 
 
 class DownloadDocumentFromEmailWindow extends DocumentsWindow {
@@ -30,9 +29,9 @@ class DownloadDocumentFromEmailWindow extends DocumentsWindow {
                 request.alias = 'saveAttachmentInDocuments';
             }
           });
-       this.okBtn.getElement().should(`be.visible`, {timeout: 50000});
+       this.okBtn.getElement().should(`not.have.class`, `GCSDBRWBMB`);
        this.clickOkBtn();
-       cy.wait(`@saveAttachmentInDocuments`, {timeout: 50000});
+       cy.wait(`@saveAttachmentInDocuments`, {timeout: 30000});
     }    
 }
 
