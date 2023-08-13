@@ -1,9 +1,7 @@
 {
-    "login": "cy20230531@mailfence.com",
-    "password": "WqSLQVuYS%",
     "subjectEmail": "Test Email",
     "filePath": "../resources", 
     "attachmentName": "TestAttachment1",
     "attachmentExtension": "txt",
     "attachmentText": "Text of the attachment"
-  }
+}

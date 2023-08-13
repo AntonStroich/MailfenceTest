@@ -33,7 +33,7 @@ describe("The first test run", function() {
 
         cy.fixture("Test1").then(function(data) {
            this.data = data;
-           cy.loginAndClearAll(this.data.login, this.data.password);
+           cy.loginAndClearAll(Cypress.env(`LOGIN`), Cypress.env(`PASSWORD`));
            cy.task(`deleteFile`, `${this.data.filePath}\\${this.data.attachmentName}.${this.data.attachmentExtension}`);
            cy.generateAttachment(this.data.filePath, this.data.attachmentName, this.data.attachmentExtension, this.data.attachmentText);
         })
@@ -41,8 +41,6 @@ describe("The first test run", function() {
     })
 
     it("The first test", function() {
-        const login = this.data.login;
-        const password = this.data.password;
         const subject = this.data.subjectEmail;
         const filePath = this.data.filePath;
         const attachmentName = this.data.attachmentName;
@@ -50,7 +48,7 @@ describe("The first test run", function() {
 
         cy.log(`Step 1. Login to Mail.`);
         landingPage.openAndClickMailBtn();
-        loginToMailPage.logInToMail(login, password);
+        loginToMailPage.logInToMail(Cypress.env(`LOGIN`), Cypress.env(`PASSWORD`));
 
         cy.log(`Step 2. Attach .txt file`);
         mailBoxHeader.clickDocumentsBtn();
@@ -64,7 +62,7 @@ describe("The first test run", function() {
             cy.setCurrentCount(currentCount);
           });
         toolBar.clickNewBtn();
-        newEmailForm.populateToTxb(login);
+        newEmailForm.populateToTxb(Cypress.env(`LOGIN`));
         newEmailForm.populateSubjectTxb(subject);
         newEmailForm.clickAttachmentsBtn();
         newEmailForm.getAttachmentDdn().should("be.visible");
