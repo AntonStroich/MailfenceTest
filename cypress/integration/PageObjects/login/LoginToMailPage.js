@@ -10,7 +10,7 @@ class LoginToMailPage extends BaseForm {
        super(`.auth-panel`, `Login to Mail page`);
        this.EmailAddressTxb = new TextBox("input#UserID", "Email Addres");
        this.PasswordTxb = new TextBox("input#Password", "Password");
-       this.EnterBtn = new Button("input[value='Enter']", "Mail");
+       this.EnterBtn = new Button(`input[type="submit"]`, "Enter");
     }
 
     populateEmailAddressTxb(login) {
