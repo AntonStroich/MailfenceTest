@@ -15,15 +15,19 @@ async function setupNodeEvents(on, config){
         return null;
     }
   });
-
   return config;
 }
 
 module.exports = defineConfig({
+  defaultCommandTimeout: 10000,
   e2e: {
     specPattern: "cypress/integration/specs/*.js",
     setupNodeEvents,
   },
+  retries: {
+    runMode: 1,
+    openMode: 1,
+    },
   env: {
     url: "https://mailfence.com"
   },

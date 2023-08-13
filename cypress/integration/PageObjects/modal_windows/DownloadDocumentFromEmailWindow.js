@@ -30,8 +30,9 @@ class DownloadDocumentFromEmailWindow extends DocumentsWindow {
                 request.alias = 'saveAttachmentInDocuments';
             }
           });
+       this.okBtn.getElement().should(`be.visible`, {timeout: 50000});
        this.clickOkBtn();
-       cy.wait(`@saveAttachmentInDocuments`, {timeout: 30000});
+       cy.wait(`@saveAttachmentInDocuments`, {timeout: 50000});
     }    
 }
 

@@ -91,9 +91,9 @@ describe("The first test run", function() {
         existedEmailForm.clickAttachmentLnkArrowLinkByIndex(0);
         existedEmailForm.getAttachmentDdn().should("be.visible");
         existedEmailForm.selectSaveInDocumentsFromAttachmentDdnAndWait();
-        downloadDocumentFromEmailWindow.getForm().should(`be.visible`, {timeout: 20000});
+        downloadDocumentFromEmailWindow.getForm().should(`be.visible`, {timeout: 30000});
         downloadDocumentFromEmailWindow.clickMyDocumentsBtn();
-        downloadDocumentFromEmailWindow.okBtn.getElement().should(`be.visible`, {timeout: 20000});
+        downloadDocumentFromEmailWindow.okBtn.getElement().should(`be.visible`, {timeout: 30000});
         downloadDocumentFromEmailWindow.clickOkAndWait();
 
         cy.log(`Step 7. Open documents area`);

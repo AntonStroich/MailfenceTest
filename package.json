@@ -171,7 +171,12 @@
     "yauzl": "^2.10.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "runTestsHeadlessInChrome": "npx cypress run --headless --browser chrome",
+    "runTestsHeadlessInEdge": "npx cypress run --headless --browser edge",
+    "runTestsHeadlessInFF": "npx cypress run --headless --browser firefox",
+    "runTestsHeadedInChrome": "npx cypress run --headed --browser chrome",
+    "runTestsHeadedInEdge": "npx cypress run --headed --browser edge",
+    "runTestsHeadedInFF": "npx cypress run --headed --browser firefox"
   },
   "repository": {
     "type": "git",
