@@ -14,13 +14,13 @@ class DocumentsPage extends BasePage {
 
     constructor(locator) {
         super(locator, `Documents Page`);
-        this.Header = new Header();
-        this.ToolBar = new ToolBar();
-        this.MainArea = new MainArea();
-        this.UserMenu = new UserMenu();
-        this.DocList =  new DocList();
-        this.ConfirmDeletionWindow = new ConfirmDeletionWindow();
-        this.DocumentsNavBar = new DocumentsNavBar();
+        this.header = new Header();
+        this.toolBar = new ToolBar();
+        this.mainArea = new MainArea();
+        this.userMenu = new UserMenu();
+        this.docList =  new DocList();
+        this.confirmDeletionWindow = new ConfirmDeletionWindow();
+        this.documentsNavBar = new DocumentsNavBar();
     }
     
 }

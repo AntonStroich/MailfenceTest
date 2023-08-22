@@ -61,10 +61,10 @@ describe("The test run for Mailfence", function() {
         mailBoxHeader.clickDocumentsBtn();
         cy.readFile(`${filePath}\\${attachmentName}.${attachmentExtension}`).should("not.be.null");
         cy.uploadNewDocumentOnDocumentPage(`${filePath}\\${attachmentName}.${attachmentExtension}`);
-        documentsPage.DocList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
+        documentsPage.docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`);
 
         cy.log(`Step 3. Send email with attached file to yourself`);
-        documentsPage.Header.clickMessagesBtn();
+        documentsPage.header.clickMessagesBtn();
         mailList.getItemCount().then(currentCount => {
             cy.setCurrentCount(currentCount);
           });
@@ -101,21 +101,21 @@ describe("The test run for Mailfence", function() {
 
         cy.log(`Step 7. Open documents area`);
         mailBoxHeader.clickDocumentsBtn();
-        documentsPage.DocList.getItemTitle().should("have.length", 2);
-        documentsPage.DocList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
-        documentsPage.DocList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
+        documentsPage.docList.getItemTitle().should("have.length", 2);
+        documentsPage.docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
+        documentsPage.docList.getItemTitleByIndex(1).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
         cy.log(`Step 8. Move file from "Мои документы" folder to "Trash" folder by Drag'n'drop action`);
-        cy.dragAndDrop(`${documentsPage.DocList.locator} ${documentsPage.DocList.itemTitle.locator} `, 1, documentsPage.DocumentsNavBar.trashBtn.locator);
-        documentsPage.DocList.getItemTitle().should("have.length", 1);
-        documentsPage.DocList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
-        documentsPage.DocumentsNavBar.clickTrashBtn();
-        documentsPage.DocList.getItemTitle().should("have.length", 1);
-        documentsPage.DocList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
+        cy.dragAndDrop(`${documentsPage.docList.locator} ${documentsPage.docList.itemTitle.locator} `, 1, documentsPage.documentsNavBar.trashBtn.locator);
+        documentsPage.docList.getItemTitle().should("have.length", 1);
+        documentsPage.docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}.${attachmentExtension}`, { timeout: 20000 });
+        documentsPage.documentsNavBar.clickTrashBtn();
+        documentsPage.docList.getItemTitle().should("have.length", 1);
+        documentsPage.docList.getItemTitleByIndex(0).should("have.attr", "title", `${attachmentName}_1.${attachmentExtension}`, { timeout: 20000 });
 
         cy.log(`Log out`)
-        documentsPage.Header.clickUserBtn();
-        documentsPage.UserMenu.clickLogOutBtn();
+        documentsPage.header.clickUserBtn();
+        documentsPage.userMenu.clickLogOutBtn();
         
     })
 })

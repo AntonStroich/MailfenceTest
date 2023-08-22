@@ -42,33 +42,25 @@ class List extends BaseComponent {
     }
 
     moveToTrashAllIfNotEmpty(){ 
-        const mainArea = new MainArea();
-        const tooBar = new ToolBar();
-
-        cy.get(`${mainArea.locator}`).then((element)=> {
+        cy.get(`${this.mainArea.locator}`).then((element)=> {
           if (element.find(`${this.locator}`).length > 0) {
-            tooBar.selectAllAndMoveToTrash();
+            this.toolBar.selectAllAndMoveToTrash();
            }
            cy.log(`the tab is empty`);
          });  
       }
 
     deleteAllIfNotEmpty(){ 
-       const mainArea = new MainArea();
-       const tooBar = new ToolBar();
-
-        cy.get(`${mainArea.locator}`).then((element)=> {
+        cy.get(`${this.mainArea.locator}`).then((element)=> {
           if (element.find(`${this.locator}`).length > 0) {
-            tooBar.selectAllAndDelete();
+            this.toolBar.selectAllAndDelete();
            }
            cy.log(`the tab is empty`);
          });  
       }
 
     getItemCount() {
-        const mainArea = new MainArea();
-      
-        cy.get(`${mainArea.locator}`, {timeout: 30000}).then((element) => {
+        cy.get(`${this.mainArea.locator}`, {timeout: 30000}).then((element) => {
           const count = element.find(`${this.locator} ${this.itemTitle.getLocator()}`).length;
           cy.log(`${count}`);
           if (count > 0) {

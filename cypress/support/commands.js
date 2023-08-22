@@ -98,14 +98,14 @@ import DocList from "../integration/PageObjects/page_components/lists/DocList";
             request.alias = 'getDocuments';
         }
       });
-    documentsPage.DocumentsNavBar.clickMyDocumentsBtn();
+    documentsPage.documentsNavBar.clickMyDocumentsBtn();
     cy.wait(`@getDocuments`, {timeout: 30000});
-    documentsPage.DocList.moveToTrashAllIfNotEmpty();
-    documentsPage.DocumentsNavBar.clickTrashBtn();
+    documentsPage.docList.moveToTrashAllIfNotEmpty();
+    documentsPage.documentsNavBar.clickTrashBtn();
     cy.wait(`@getDocuments`, {timeout: 30000});
-    documentsPage.DocList.deleteAllIfNotEmpty();
-    documentsPage.Header.clickUserBtn();
-    documentsPage.UserMenu.clickLogOutBtn();
+    documentsPage.docList.deleteAllIfNotEmpty();
+    documentsPage.header.clickUserBtn();
+    documentsPage.userMenu.clickLogOutBtn();
   })
 
 
