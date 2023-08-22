@@ -1,14 +1,5 @@
 import {LandingPage, LoginToMailPage, DocumentsPage, MessagesPage} from "../integration/PageObjects/pages/index";
 
-
-import Header from "../integration/PageObjects/page_components/Header";
-import UserMenu from "../integration/PageObjects/page_components/UserMenu";
-import MessagesNavBar from "../integration/PageObjects/page_components/navigation_bars/MessagesNavBar";
-import DocumentsNavBar from "../integration/PageObjects/page_components/navigation_bars/DocumentsNavBar";
-import MailList from "../integration/PageObjects/page_components/lists/MailList";
-import DocList from "../integration/PageObjects/page_components/lists/DocList";
-
-
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentExtension, attachmentText)=> { 
     cy.writeFile(`${filePath}\\${attachmentName}.${attachmentExtension}`, `${attachmentText}`);
     cy.readFile(`${filePath}\\${attachmentName}.${attachmentExtension}`).should("not.be.null");
@@ -65,11 +56,6 @@ import DocList from "../integration/PageObjects/page_components/lists/DocList";
     const loginToMailPage = new LoginToMailPage();
     const documentsPage = new DocumentsPage();
     const messagesPage = new MessagesPage();
-
-
-    const mailBoxHeader = new Header();
-    const messagesNavBar = new MessagesNavBar();;
-    const mailList = new MailList();
   
     landingPage.openAndClickMailBtn();
     cy.intercept(`POST`, `/gwt`, (request) => {
@@ -79,20 +65,20 @@ import DocList from "../integration/PageObjects/page_components/lists/DocList";
       });
     loginToMailPage.logInToMail(login, password);
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    mailList.moveToTrashAllIfNotEmpty();
-    messagesNavBar.clickSentBtn();
+    messagesPage.mailList.moveToTrashAllIfNotEmpty();
+    messagesPage.messagesNavBar.clickSentBtn();
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    mailList.moveToTrashAllIfNotEmpty();
-    messagesNavBar.clickDraftsBtn();
+    messagesPage.mailList.moveToTrashAllIfNotEmpty();
+    messagesPage.messagesNavBar.clickDraftsBtn();
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    mailList.moveToTrashAllIfNotEmpty();
-    messagesNavBar.clickSpamBtn();
+    messagesPage.mailList.moveToTrashAllIfNotEmpty();
+    messagesPage.messagesNavBar.clickSpamBtn();
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    mailList.deleteAllIfNotEmpty();
-    messagesNavBar.clickTrashBtn();
+    messagesPage.mailList.deleteAllIfNotEmpty();
+    messagesPage.messagesNavBar.clickTrashBtn();
     cy.wait(`@getFolderMessages`, {timeout: 30000});
-    mailList.deleteAllIfNotEmpty();
-    mailBoxHeader.clickDocumentsBtn();
+    messagesPage.mailList.deleteAllIfNotEmpty();
+    messagesPage.header.clickDocumentsBtn();
     cy.intercept(`POST`, `/gwt`, (request) => {
         if (request.body.includes(`getDocuments`)) {
             request.alias = 'getDocuments';
@@ -121,13 +107,13 @@ Cypress.Commands.add("uploadNewDocumentOnDocumentPage", (path, url) => {
   });
 
   Cypress.Commands.add(`reloadMessagesPage`, () => {
-    const mailBoxHeader = new Header();
+    const messagesPage = new MessagesPage();
     cy.intercept(`POST`, `/gwt`, (request) => {
       if (request.body.includes(`getMeetingsRequestsToAnswer`)) {
           request.alias = 'login';
       }
     });
     cy.reload();
-    mailBoxHeader.getForm().should(`be.visible`, {timeout: 30000});
+    messagesPage.header.getForm().should(`be.visible`, {timeout: 30000});
   });
   
