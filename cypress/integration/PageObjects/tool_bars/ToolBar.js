@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
 import MailBoxMainArea from "../mail_box/MailBoxMainArea";
-import Checkbox from "../elements/Checkbox";
 import Button from "../elements/Button";
+import Checkbox from "../elements/CheckboxMailfence";
 import ConfirmDeletionWindow from "../modal_windows/ConfirmDeletionWindow";
 
 class ToolBar extends MailBoxMainArea  {

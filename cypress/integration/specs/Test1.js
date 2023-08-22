@@ -31,7 +31,7 @@ describe("The first test run", function() {
     
     this.beforeEach(function() {
 
-        cy.fixture("Test1").then(function(data) {
+        cy.fixture("test1_test_data").then(function(data) {
            this.data = data;
            cy.loginAndClearAll(Cypress.env(`LOGIN`), Cypress.env(`PASSWORD`));
            cy.task(`deleteFile`, `${this.data.filePath}\\${this.data.attachmentName}.${this.data.attachmentExtension}`);
