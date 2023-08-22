@@ -1,5 +1,7 @@
 import LandingPage from "../integration/PageObjects/pages/LandingPage";
 import LoginToMailPage from "../integration/PageObjects/pages/LoginToMailPage";
+import DocumentsPage from "../integration/PageObjects/pages/DocumentsPage";
+
 import Header from "../integration/PageObjects/page_components/Header";
 import UserMenu from "../integration/PageObjects/page_components/UserMenu";
 import MessagesNavBar from "../integration/PageObjects/page_components/navigation_bars/MessagesNavBar";
@@ -62,14 +64,13 @@ import DocList from "../integration/PageObjects/page_components/lists/DocList";
   Cypress.Commands.add("loginAndClearAll", (login, password)=> {
     const landingPage = new LandingPage();
     const loginToMailPage = new LoginToMailPage();
-    const mailBoxHeader = new Header();
-    const mailBoxUserMenu = new UserMenu();
-    const messagesNavBar = new MessagesNavBar();
-    const documentsNavBar = new DocumentsNavBar();
-    const mailList = new MailList();
-    const docList = new DocList();
-  
+    const documentsPage = new DocumentsPage();
 
+
+    const mailBoxHeader = new Header();
+    const messagesNavBar = new MessagesNavBar();;
+    const mailList = new MailList();
+  
     landingPage.openAndClickMailBtn();
     cy.intercept(`POST`, `/gwt`, (request) => {
         if (request.body.includes(`getFolderMessages`)) {
@@ -97,14 +98,14 @@ import DocList from "../integration/PageObjects/page_components/lists/DocList";
             request.alias = 'getDocuments';
         }
       });
-    documentsNavBar.clickMyDocumentsBtn();
+    documentsPage.DocumentsNavBar.clickMyDocumentsBtn();
     cy.wait(`@getDocuments`, {timeout: 30000});
-    docList.moveToTrashAllIfNotEmpty();
-    documentsNavBar.clickTrashBtn();
+    documentsPage.DocList.moveToTrashAllIfNotEmpty();
+    documentsPage.DocumentsNavBar.clickTrashBtn();
     cy.wait(`@getDocuments`, {timeout: 30000});
-    docList.deleteAllIfNotEmpty();
-    mailBoxHeader.clickUserBtn();
-    mailBoxUserMenu.clickLogOutBtn();
+    documentsPage.DocList.deleteAllIfNotEmpty();
+    documentsPage.Header.clickUserBtn();
+    documentsPage.UserMenu.clickLogOutBtn();
   })
 
 
