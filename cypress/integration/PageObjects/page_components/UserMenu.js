@@ -1,9 +1,9 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
+import BaseComponent from "./BaseComponent";
 import Button from "../elements/Button";
 
 
-class UserMenu extends BaseForm {
+class UserMenu extends BaseComponent {
 
     constructor() {
         super(`.GCSDBRWBNQ.menu`, `Mail box User menu`);

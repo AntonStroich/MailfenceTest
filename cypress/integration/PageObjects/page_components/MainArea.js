@@ -1,8 +1,8 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
+import BaseComponent from "./BaseComponent";
 
 
-class MainArea extends BaseForm  {
+class MainArea extends BaseComponent  {
 
     constructor() {
         super(`div.GCSDBRWBG`, `Pages Main Area`);

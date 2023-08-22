@@ -1,9 +1,9 @@
 ///<reference types = 'Cypress' />
 import Button from "../elements/Button";
-import BaseForm from "../BaseForm";
+import BasePage from "./BasePage";
 
 
-class LandingPage extends BaseForm {
+class LandingPage extends BasePage {
 
     constructor() {
         super(`header.container.limit.hero.mf`, `Landing Page`);

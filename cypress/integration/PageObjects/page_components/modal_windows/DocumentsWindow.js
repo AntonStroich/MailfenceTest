@@ -1,8 +1,8 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../../BaseForm";
+import BaseComponent from "../BaseComponent";
 import Button from "../../elements/Button";
 
-class DocumentsWindow extends BaseForm {
+class DocumentsWindow extends BaseComponent {
 
     constructor(locator) {
         super(locator, `Documents Window`);

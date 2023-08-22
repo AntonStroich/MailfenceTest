@@ -1,10 +1,10 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
+import BasePage from "./BasePage";
 import Button from "../elements/Button";
 import TextBox from "../elements/TextBox";
 import Header from "../page_components/Header";
 
-class LoginToMailPage extends BaseForm {
+class LoginToMailPage extends BasePage {
 
     constructor() {
        super(`.auth-panel`, `Login to Mail page`);

@@ -1,10 +1,10 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../../BaseForm";
+import BaseComponent from "../BaseComponent";
 import Label from "../../elements/Label";
 import MainArea from "../../page_components/MainArea";
 import ToolBar from "../../page_components/ToolBar";
 
-class List extends BaseForm {
+class List extends BaseComponent {
 
     constructor(locator) {
         super(locator, `List`);

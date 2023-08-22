@@ -1,9 +1,9 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../../BaseForm";
+import BaseComponent from "../BaseComponent";
 import Button from "../../elements/Button";
 
 
-class ConfirmDeletionWindow extends BaseForm {
+class ConfirmDeletionWindow extends BaseComponent {
 
     constructor() {
         super(`#msgBox`,`Confirm Deletion Window`);

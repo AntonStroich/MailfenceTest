@@ -1,8 +1,8 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
+import BaseComponent from "./BaseComponent";
 import Button from "../elements/Button";
 
-class Header extends BaseForm  {
+class Header extends BaseComponent  {
 
     constructor() {
         super(`div#toolSelector`, `Mail Box header`);
