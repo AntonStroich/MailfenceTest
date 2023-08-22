@@ -1,6 +1,5 @@
-import LandingPage from "../integration/PageObjects/pages/LandingPage";
-import LoginToMailPage from "../integration/PageObjects/pages/LoginToMailPage";
-import DocumentsPage from "../integration/PageObjects/pages/DocumentsPage";
+import {LandingPage, LoginToMailPage, DocumentsPage, MessagesPage} from "../integration/PageObjects/pages/index";
+
 
 import Header from "../integration/PageObjects/page_components/Header";
 import UserMenu from "../integration/PageObjects/page_components/UserMenu";
@@ -65,6 +64,7 @@ import DocList from "../integration/PageObjects/page_components/lists/DocList";
     const landingPage = new LandingPage();
     const loginToMailPage = new LoginToMailPage();
     const documentsPage = new DocumentsPage();
+    const messagesPage = new MessagesPage();
 
 
     const mailBoxHeader = new Header();

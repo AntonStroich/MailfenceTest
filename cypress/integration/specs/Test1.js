@@ -1,8 +1,9 @@
 ///<reference types = 'Cypress' />
+import {LandingPage, LoginToMailPage, DocumentsPage, MessagesPage} from "../PageObjects/pages/index";
 
-import LandingPage from "../PageObjects/pages/LandingPage";
-import LoginToMailPage from "../PageObjects/pages/LoginToMailPage";
-import DocumentsPage from "../PageObjects/pages/DocumentsPage";
+// import LandingPage from "../PageObjects/pages/LandingPage";
+// import LoginToMailPage from "../PageObjects/pages/LoginToMailPage";
+// import DocumentsPage from "../PageObjects/pages/DocumentsPage";
 
 
 
@@ -21,6 +22,7 @@ import DownloadDocumentFromEmailWindow from "../PageObjects/page_components/moda
 const landingPage = new LandingPage();
 const loginToMailPage = new LoginToMailPage();
 const documentsPage = new DocumentsPage();
+const messagesPage = new MessagesPage();
 
 const mailBoxHeader = new Header();
 const mailBoxUserMenu = new UserMenu();
