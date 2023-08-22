@@ -1,8 +1,8 @@
 ///<reference types = 'Cypress' />
-import MailBoxMainArea from "../mail_box/MailBoxMainArea";
-import Button from "../elements/Button";
+import MainArea from "../MainArea";
+import Button from "../../elements/Button";
 
-class MessagesNavBar extends MailBoxMainArea {
+class MessagesNavBar extends MainArea {
 
     constructor() {
         super(`div.GCSDBRWBH.appLeftPanel`, `Messages Nav bar`);

@@ -1,5 +1,5 @@
 ///<reference types = 'Cypress' />
-import Label from "../elements/Label";
+import Label from "../../elements/Label";
 import List from "../lists/List";
 
 class DocList extends List {

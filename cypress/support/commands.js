@@ -1,11 +1,11 @@
-import LandingPage from "../integration/PageObjects/landing/LandingPage";
-import LoginToMailPage from "../integration/PageObjects/login/LoginToMailPage";
-import MailBoxHeader from "../integration/PageObjects/mail_box/MailBoxHeader";
-import MailBoxUserMenu from "../integration/PageObjects/mail_box/MailBoxUserMenu";
-import MessagesNavBar from "../integration/PageObjects/navigation_bars/MessagesNavBar";
-import DocumentsNavBar from "../integration/PageObjects/navigation_bars/DocumentsNavBar";
-import MailList from "../integration/PageObjects/lists/MailList";
-import DocList from "../integration/PageObjects/lists/DocList";
+import LandingPage from "../integration/PageObjects/pages/LandingPage";
+import LoginToMailPage from "../integration/PageObjects/pages/LoginToMailPage";
+import Header from "../integration/PageObjects/page_components/Header";
+import UserMenu from "../integration/PageObjects/page_components/UserMenu";
+import MessagesNavBar from "../integration/PageObjects/page_components/navigation_bars/MessagesNavBar";
+import DocumentsNavBar from "../integration/PageObjects/page_components/navigation_bars/DocumentsNavBar";
+import MailList from "../integration/PageObjects/page_components/lists/MailList";
+import DocList from "../integration/PageObjects/page_components/lists/DocList";
 
 
   Cypress.Commands.add("generateAttachment", (filePath, attachmentName, attachmentExtension, attachmentText)=> { 
@@ -62,8 +62,8 @@ import DocList from "../integration/PageObjects/lists/DocList";
   Cypress.Commands.add("loginAndClearAll", (login, password)=> {
     const landingPage = new LandingPage();
     const loginToMailPage = new LoginToMailPage();
-    const mailBoxHeader = new MailBoxHeader();
-    const mailBoxUserMenu = new MailBoxUserMenu();
+    const mailBoxHeader = new Header();
+    const mailBoxUserMenu = new UserMenu();
     const messagesNavBar = new MessagesNavBar();
     const documentsNavBar = new DocumentsNavBar();
     const mailList = new MailList();
@@ -120,7 +120,7 @@ Cypress.Commands.add("uploadNewDocumentOnDocumentPage", (path, url) => {
   });
 
   Cypress.Commands.add(`reloadMessagesPage`, () => {
-    const mailBoxHeader = new MailBoxHeader();
+    const mailBoxHeader = new Header();
     cy.intercept(`POST`, `/gwt`, (request) => {
       if (request.body.includes(`getMeetingsRequestsToAnswer`)) {
           request.alias = 'login';

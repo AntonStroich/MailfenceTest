@@ -1,14 +1,16 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
-import Label from "../elements/Label";
-import MailBoxMainArea from "../mail_box/MailBoxMainArea";
-import ToolBar from "../tool_bars/ToolBar";
+import BaseForm from "../../BaseForm";
+import Label from "../../elements/Label";
+import MainArea from "../../page_components/MainArea";
+import ToolBar from "../../page_components/ToolBar";
 
 class List extends BaseForm {
 
     constructor(locator) {
         super(locator, `List`);
         this.itemTitle = new Label(locator, `Item Title`);
+        this.mainArea = new MainArea();
+        this.toolBar = new ToolBar();
     }
 
     getList() {
@@ -40,10 +42,10 @@ class List extends BaseForm {
     }
 
     moveToTrashAllIfNotEmpty(){ 
-        const mailBoxMainArea = new MailBoxMainArea();
+        const mainArea = new MainArea();
         const tooBar = new ToolBar();
 
-        cy.get(`${mailBoxMainArea.locator}`).then((element)=> {
+        cy.get(`${mainArea.locator}`).then((element)=> {
           if (element.find(`${this.locator}`).length > 0) {
             tooBar.selectAllAndMoveToTrash();
            }
@@ -52,10 +54,10 @@ class List extends BaseForm {
       }
 
     deleteAllIfNotEmpty(){ 
-        const mailBoxMainArea = new MailBoxMainArea();
-        const tooBar = new ToolBar();
+       const mainArea = new MainArea();
+       const tooBar = new ToolBar();
 
-        cy.get(`${mailBoxMainArea.locator}`).then((element)=> {
+        cy.get(`${mainArea.locator}`).then((element)=> {
           if (element.find(`${this.locator}`).length > 0) {
             tooBar.selectAllAndDelete();
            }
@@ -64,9 +66,9 @@ class List extends BaseForm {
       }
 
     getItemCount() {
-        const mailBoxMainArea = new MailBoxMainArea();
+        const mainArea = new MainArea();
       
-        cy.get(`${mailBoxMainArea.locator}`, {timeout: 30000}).then((element) => {
+        cy.get(`${mainArea.locator}`, {timeout: 30000}).then((element) => {
           const count = element.find(`${this.locator} ${this.itemTitle.getLocator()}`).length;
           cy.log(`${count}`);
           if (count > 0) {

@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
-import EmailForm from "../messages_page/EmailForm";
-import Label from "../elements/Label";
-import Link from "../elements/Link";
+import EmailForm from "../email_forms/EmailForm";
+import Label from "../../elements/Label";
+import Link from "../../elements/Link";
 
 class ExistedEmailForm extends EmailForm  {
 

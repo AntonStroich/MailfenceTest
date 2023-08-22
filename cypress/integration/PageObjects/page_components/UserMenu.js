@@ -3,7 +3,7 @@ import BaseForm from "../BaseForm";
 import Button from "../elements/Button";
 
 
-class MailBoxUserMenu extends BaseForm {
+class UserMenu extends BaseForm {
 
     constructor() {
         super(`.GCSDBRWBNQ.menu`, `Mail box User menu`);
@@ -17,4 +17,4 @@ class MailBoxUserMenu extends BaseForm {
 
 }
 
-export default MailBoxUserMenu;
+export default UserMenu;

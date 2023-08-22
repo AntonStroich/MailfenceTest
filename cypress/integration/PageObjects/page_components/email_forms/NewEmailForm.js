@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
-import Button from "../elements/Button";
-import TextBox from "../elements/TextBox";
-import EmailForm from "../messages_page/EmailForm";
+import Button from "../../elements/Button";
+import TextBox from "../../elements/TextBox";
+import EmailForm from "../email_forms/EmailForm";
 
 class NewEmailForm extends EmailForm  {
 

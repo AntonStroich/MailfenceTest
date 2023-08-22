@@ -1,6 +1,6 @@
 ///<reference types = 'Cypress' />
 import DocumentsWindow from "./DocumentsWindow";
-import Button from "../elements/Button";
+import Button from "../../elements/Button";
 
 
 class DownloadDocumentFromEmailWindow extends DocumentsWindow {

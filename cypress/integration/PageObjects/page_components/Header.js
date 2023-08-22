@@ -2,9 +2,9 @@
 import BaseForm from "../BaseForm";
 import Button from "../elements/Button";
 
-class MailBoxHeader extends BaseForm  {
+class Header extends BaseForm  {
 
-    constructor(locator) {
+    constructor() {
         super(`div#toolSelector`, `Mail Box header`);
         this.messagesBtn = new Button("div#nav-mail", "Messages");
         this.userBtn = new Button("div[class = 'GCSDBRWBNE user GCSDBRWBGE']", "User");
@@ -39,4 +39,4 @@ class MailBoxHeader extends BaseForm  {
     }
 }
 
-export default MailBoxHeader;
+export default Header;

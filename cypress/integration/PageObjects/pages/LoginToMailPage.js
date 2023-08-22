@@ -2,7 +2,7 @@
 import BaseForm from "../BaseForm";
 import Button from "../elements/Button";
 import TextBox from "../elements/TextBox";
-import MailBoxHeader from "../mail_box/MailBoxHeader";
+import Header from "../page_components/Header";
 
 class LoginToMailPage extends BaseForm {
 
@@ -29,7 +29,7 @@ class LoginToMailPage extends BaseForm {
     }
 
     logInToMail(login, password) {
-        const mailBoxHeader = new MailBoxHeader();
+        const mailBoxHeader = new Header();
         cy.intercept(`POST`, `/gwt`, (request) => {
             if (request.body.includes(`getMeetingsRequestsToAnswer`)) {
                 request.alias = 'login';

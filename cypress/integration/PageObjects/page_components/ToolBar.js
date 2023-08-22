@@ -1,10 +1,10 @@
 ///<reference types = 'Cypress' />
-import MailBoxMainArea from "../mail_box/MailBoxMainArea";
+import MainArea from "../../PageObjects/page_components/MainArea";
 import Button from "../elements/Button";
 import Checkbox from "../elements/CheckboxMailfence";
-import ConfirmDeletionWindow from "../modal_windows/ConfirmDeletionWindow";
+import ConfirmDeletionWindow from "./modal_windows/ConfirmDeletionWindow";
 
-class ToolBar extends MailBoxMainArea  {
+class ToolBar extends MainArea  {
 
     constructor() {
         super(".GCSDBRWBKV.toolbar", `Tool bar`);

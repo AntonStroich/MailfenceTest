@@ -1,6 +1,6 @@
 ///<reference types = 'Cypress' />
-import BaseForm from "../BaseForm";
-import Button from "../elements/Button";
+import BaseForm from "../../BaseForm";
+import Button from "../../elements/Button";
 
 class DocumentsWindow extends BaseForm {
 

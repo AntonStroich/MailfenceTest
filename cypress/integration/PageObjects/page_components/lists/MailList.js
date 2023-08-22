@@ -1,7 +1,7 @@
 ///<reference types = 'Cypress' />
-import Label from "../elements/Label";
+import Label from "../../elements/Label";
 import List from "../lists/List";
-import ToolBar from "../tool_bars/ToolBar";
+import ToolBar from "../../page_components/ToolBar"
 
 class MailList extends List {
 

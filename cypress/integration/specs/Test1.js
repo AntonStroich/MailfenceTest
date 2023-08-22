@@ -1,22 +1,22 @@
 ///<reference types = 'Cypress' />
-import LandingPage from "../PageObjects/landing/LandingPage";
-import LoginToMailPage from "../PageObjects/login/LoginToMailPage";
-import MailBoxHeader from "../PageObjects/mail_box/MailBoxHeader";
-import MailBoxUserMenu from "../PageObjects/mail_box/MailBoxUserMenu";
-import ToolBar from "../PageObjects/tool_bars/ToolBar";
-import NewEmailForm from "../PageObjects/messages_page/NewEmailForm";;
-import DocumentsNavBar from "../PageObjects/navigation_bars/DocumentsNavBar";
-import MailList from "../PageObjects/lists/MailList";
-import DocList from "../PageObjects/lists/DocList";
-import AddDocumentToEmailWindow from "../PageObjects/modal_windows/AddDocumentToEmailWindow";
-import ExistedEmailForm from "../PageObjects/messages_page/ExistedEmailForm";
-import DownloadDocumentFromEmailWindow from "../PageObjects/modal_windows/DownloadDocumentFromEmailWindow";
+import LandingPage from "../PageObjects/pages/LandingPage";
+import LoginToMailPage from "../PageObjects/pages/LoginToMailPage";
+import Header from "../PageObjects/page_components/Header";
+import UserMenu from "../PageObjects/page_components/UserMenu";
+import ToolBar from "../PageObjects/page_components/ToolBar";
+import NewEmailForm from "../PageObjects/page_components/email_forms/NewEmailForm";;
+import DocumentsNavBar from "../PageObjects/page_components/navigation_bars/DocumentsNavBar";
+import MailList from "../PageObjects/page_components/lists/MailList";
+import DocList from "../PageObjects/page_components/lists/DocList";
+import AddDocumentToEmailWindow from "../PageObjects/page_components/modal_windows/AddDocumentToEmailWindow";
+import ExistedEmailForm from "../PageObjects/page_components/email_forms/ExistedEmailForm";
+import DownloadDocumentFromEmailWindow from "../PageObjects/page_components/modal_windows/DownloadDocumentFromEmailWindow";
 
 
 const landingPage = new LandingPage();
 const loginToMailPage = new LoginToMailPage();
-const mailBoxHeader = new MailBoxHeader();
-const mailBoxUserMenu = new MailBoxUserMenu();
+const mailBoxHeader = new Header();
+const mailBoxUserMenu = new UserMenu();
 const documentsNavBar = new DocumentsNavBar();
 const toolBar = new ToolBar();
 const newEmailForm = new NewEmailForm();
